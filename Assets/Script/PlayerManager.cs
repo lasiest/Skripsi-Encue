@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    public static PlayerManager Instance { get; private set; }
-
     [SerializeField]
     private string _playerName;
 
@@ -22,18 +18,6 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] availableTask;
     public TaskInformation[] availableTaskData;
     public TaskInformation[] taskInformation;
-
-    private void Awake() {
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-            DontDestroyOnLoad(Instance);
-        }
-    }
 
     public string GetPlayerName(){
         return _playerName;

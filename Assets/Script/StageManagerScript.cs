@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageManagerScript : MonoBehaviour
+public class StageManagerScript : Singleton<StageManagerScript>
 {
     [SerializeField]
     private int score;

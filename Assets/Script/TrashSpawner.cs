@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
@@ -8,7 +7,6 @@ public class TrashSpawner : MonoBehaviour
     public SampahInformation[] sampahInformation;
     public float numberOfTrash;
     public float checkingTime;
-    public StageManagerScript stageManagerScript;
 
     private void Start() {
         StartCoroutine(WaitForChecking(checkingTime));
@@ -27,10 +25,10 @@ public class TrashSpawner : MonoBehaviour
     IEnumerator WaitForChecking(float time){
         GameObject[] temp;
         temp = GameObject.FindGameObjectsWithTag("Trash");
-        if(stageManagerScript.getTrashNeeded() == 0){
-            stageManagerScript.StageFinisihed();
+        if (StageManagerScript.Instance.getTrashNeeded() == 0) {
+            StageManagerScript.Instance.StageFinisihed();
         }
-        if(temp.Length < numberOfTrash && stageManagerScript.getTrashNeeded() > temp.Length){
+        if (temp.Length < numberOfTrash && StageManagerScript.Instance.getTrashNeeded() > temp.Length) {
             Spawn();
         }
         yield return new WaitForSeconds(time);
