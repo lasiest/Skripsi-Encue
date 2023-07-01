@@ -13,41 +13,21 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [SerializeField]
     private int _playerTrashCollectedAllTime;
-    [SerializeField]
-    public int indexCurrentScenarioTask;
+
+    public int indexCurrentScenarioTask { get; set; }
+
     public GameObject[] availableTask;
     public TaskInformation[] availableTaskData;
     public TaskInformation[] taskInformation;
 
-    public string GetPlayerName(){
-        return _playerName;
-    }
+    public string GetPlayerName() => _playerName;
+    public int GetPlayerReputation() => _playerReputation;
+    public int GetPlayerMoney() => _playerMoney;
+    public int GetTrashCollectedAllTime() => _playerTrashCollectedAllTime;
 
-    public int GetPlayerReputation(){
-        return _playerReputation;
-    }
-
-    public int GetPlayerMoney(){
-        return _playerMoney;
-    }
-    public int GetTrashCollectedAllTme(){
-        return _playerTrashCollectedAllTime;
-    }
-    public void SetTrashCollectedAllTime(int value){
-        _playerTrashCollectedAllTime += value;
-    }
-    public void SetPlayerReputation(int temp){
-        _playerReputation += temp;
-    }
-    public void SetPlayerMoney(int temp){
-        _playerMoney += temp;
-    }
-    public GameObject[] GetTask(){
-        availableTask = GameObject.FindGameObjectsWithTag("Task");
-        return availableTask;
-    }
-
-    public void SetTask(TaskInformation taskInformation){
-        availableTaskData[availableTask.Length-1] = taskInformation;
-    }
+    public void SetTrashCollectedAllTime(int value) => _playerTrashCollectedAllTime += value;
+    public void SetPlayerReputation(int temp) => _playerReputation += temp;
+    public void SetPlayerMoney(int temp) => _playerMoney += temp;
+    public GameObject[] GetTask() => GameObject.FindGameObjectsWithTag("Task");
+    public void SetTask(TaskInformation taskInformation) => availableTaskData[availableTask.Length - 1] = taskInformation;
 }

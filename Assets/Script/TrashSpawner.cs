@@ -8,9 +8,7 @@ public class TrashSpawner : MonoBehaviour
     public float numberOfTrash;
     public float checkingTime;
 
-    private void Start() {
-        StartCoroutine(WaitForChecking(checkingTime));
-    }
+    private void Start() => StartCoroutine(WaitForChecking(checkingTime));
 
     void Spawn () {    
         float spawnPointX = Random.Range(-4.5f, 4.5f);
@@ -25,10 +23,10 @@ public class TrashSpawner : MonoBehaviour
     IEnumerator WaitForChecking(float time){
         GameObject[] temp;
         temp = GameObject.FindGameObjectsWithTag("Trash");
-        if (StageManagerScript.Instance.getTrashNeeded() == 0) {
+        if (StageManagerScript.Instance.TrashNeeded == 0) {
             StageManagerScript.Instance.StageFinisihed();
         }
-        if (temp.Length < numberOfTrash && StageManagerScript.Instance.getTrashNeeded() > temp.Length) {
+        if (temp.Length < numberOfTrash && StageManagerScript.Instance.TrashNeeded > temp.Length) {
             Spawn();
         }
         yield return new WaitForSeconds(time);
