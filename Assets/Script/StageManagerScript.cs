@@ -9,23 +9,24 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField]
     private int score;
 
-    public int Score { get { return score; } }
+    public int Score => score;
 
     [SerializeField]
     private int trashNeeded;
 
-    public int TrashNeeded { get { return trashNeeded; } }
+    public int TrashNeeded => trashNeeded;
 
-    public TaskInformation taskInformation;
+    private TaskInformation taskInformation;
+
     public Action<int, int> Increase { get; private set; }
 
     [Header("UI")]
-    public TMP_Text titleText;
-    public TMP_Text descText;
-    public TMP_Text scoreText;
-    public TMP_Text trashNeededText;
-    public GameObject buttonGameObject;
-    public Button buttonBackToHome;
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text descText;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text trashNeededText;
+    [SerializeField] private GameObject buttonGameObject;
+    [SerializeField] private Button buttonBackToHome;
 
     private void Awake() {
         taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];

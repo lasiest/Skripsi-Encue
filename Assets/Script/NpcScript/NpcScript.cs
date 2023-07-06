@@ -1,30 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcScript : MonoBehaviour
 {
-    public GameObject trashPrefab;
-    public SampahInformation[] sampahInformation;
-    public float availabeTrash;
+    [SerializeField]
+    private GameObject trashPrefab;
 
-    private void Start() {
-        int random = Random.Range(5, 10);
-        StartCoroutine(instantiateTrash(random));
-    } 
+    [SerializeField]
+    private SampahInformation[] sampahInformation;
 
-    void Spawn(){
-        GameObject temp = Instantiate (trashPrefab, transform.position, Quaternion.identity);
+    [SerializeField]
+    private float availableTrash;
+
+    private void Start() => StartCoroutine(InstantiateTrash(Random.Range(5, 10)));
+
+    private void Spawn() {
+        GameObject temp = Instantiate(trashPrefab, transform.position, Quaternion.identity);
         TrashScript trashScript = temp.GetComponent<TrashScript>();
-        trashScript.sampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length)]; 
-        availabeTrash--;
+        trashScript.sampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length)];
+        availableTrash--;
     }
-    IEnumerator instantiateTrash(float wait){
+
+    private IEnumerator InstantiateTrash(float wait) {
         yield return new WaitForSeconds(wait);
         Spawn();
-        if(availabeTrash > 0){
-            int random = Random.Range(5, 20);
-            StartCoroutine(instantiateTrash(random));
-        }
+        if (availableTrash > 0) StartCoroutine(InstantiateTrash(Random.Range(5, 20)));
     }
 }

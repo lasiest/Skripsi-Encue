@@ -1,4 +1,4 @@
-public class BinOrganik : Bin
+public class BinOrganik : BinTypeObject
 {
-    protected new const SampahInformation.tipeSampahEnum tipeSampah = SampahInformation.tipeSampahEnum.Organik;
+    protected override SampahInformation.tipeSampahEnum TipeSampah => SampahInformation.tipeSampahEnum.Organik;
 }

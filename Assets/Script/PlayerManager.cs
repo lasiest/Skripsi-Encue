@@ -16,9 +16,10 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public int indexCurrentScenarioTask { get; set; }
 
-    public GameObject[] availableTask;
-    public TaskInformation[] availableTaskData;
-    public TaskInformation[] taskInformation;
+    private GameObject[] availableTask;
+    private TaskInformation[] availableTaskData;
+
+    public TaskInformation[] taskInformation => new TaskInformation[] { };
 
     public string GetPlayerName() => _playerName;
     public int GetPlayerReputation() => _playerReputation;

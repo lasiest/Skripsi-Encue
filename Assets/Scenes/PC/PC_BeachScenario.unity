@@ -1224,7 +1224,7 @@ MonoBehaviour:
   sampahInformation:
   - {fileID: 11400000, guid: 2e0162ea8f75b664eac7a466fab0faf0, type: 2}
   - {fileID: 11400000, guid: 96bc3f9b78b5d364ab9b6df08d1f1625, type: 2}
-  availabeTrash: 2
+  availableTrash: 2
 --- !u!54 &747164538
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2991,12 +2991,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c46890a4f87aa642ba6c918892d36a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 747164536}
-  pos:
-  - {fileID: 1956235042}
-  - {fileID: 810119999}
-  - {fileID: 1673843699}
-  - {fileID: 1951761306}
+  npc: {fileID: 747164542}
+  target:
+  - {fileID: 1956235043}
+  - {fileID: 810120000}
+  - {fileID: 1673843700}
+  - {fileID: 1951761307}
   curr_pos: 00000000
   index_curr_pos: 0
   movementSpeed: 2

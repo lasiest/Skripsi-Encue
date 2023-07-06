@@ -1,4 +1,4 @@
-public class BinMixed : Bin
+public class BinMixed : BinTypeObject
 {
-    protected override int SetScore(TrashScript trashScript) => 50;
+    protected override SampahInformation.tipeSampahEnum TipeSampah => SampahInformation.tipeSampahEnum.None;
 }
