@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    public static PlayerManager Instance { get; private set; }
-
     [SerializeField]
     private string _playerName;
 
@@ -17,53 +13,22 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     private int _playerTrashCollectedAllTime;
-    [SerializeField]
-    public int indexCurrentScenarioTask;
-    public GameObject[] availableTask;
-    public TaskInformation[] availableTaskData;
-    public TaskInformation[] taskInformation;
 
-    private void Awake() {
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-            DontDestroyOnLoad(Instance);
-        }
-    }
+    public int indexCurrentScenarioTask { get; set; }
 
-    public string GetPlayerName(){
-        return _playerName;
-    }
+    private GameObject[] availableTask;
+    private TaskInformation[] availableTaskData;
 
-    public int GetPlayerReputation(){
-        return _playerReputation;
-    }
+    public TaskInformation[] taskInformation => new TaskInformation[] { };
 
-    public int GetPlayerMoney(){
-        return _playerMoney;
-    }
-    public int GetTrashCollectedAllTme(){
-        return _playerTrashCollectedAllTime;
-    }
-    public void SetTrashCollectedAllTime(int value){
-        _playerTrashCollectedAllTime += value;
-    }
-    public void SetPlayerReputation(int temp){
-        _playerReputation += temp;
-    }
-    public void SetPlayerMoney(int temp){
-        _playerMoney += temp;
-    }
-    public GameObject[] GetTask(){
-        availableTask = GameObject.FindGameObjectsWithTag("Task");
-        return availableTask;
-    }
+    public string GetPlayerName() => _playerName;
+    public int GetPlayerReputation() => _playerReputation;
+    public int GetPlayerMoney() => _playerMoney;
+    public int GetTrashCollectedAllTime() => _playerTrashCollectedAllTime;
 
-    public void SetTask(TaskInformation taskInformation){
-        availableTaskData[availableTask.Length-1] = taskInformation;
-    }
+    public void SetTrashCollectedAllTime(int value) => _playerTrashCollectedAllTime += value;
+    public void SetPlayerReputation(int temp) => _playerReputation += temp;
+    public void SetPlayerMoney(int temp) => _playerMoney += temp;
+    public GameObject[] GetTask() => GameObject.FindGameObjectsWithTag("Task");
+    public void SetTask(TaskInformation taskInformation) => availableTaskData[availableTask.Length - 1] = taskInformation;
 }

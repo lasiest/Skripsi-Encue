@@ -1,23 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageManagerScript : MonoBehaviour
+public class StageManagerScript : Singleton<StageManagerScript>
 {
     [SerializeField]
     private int score;
+
+    public int Score => score;
+
     [SerializeField]
     private int trashNeeded;
-    public TaskInformation taskInformation;
-    public TMP_Text titleText;
-    public TMP_Text descText;
-    public TMP_Text scoreText;
-    public TMP_Text trashNeededText;
-    public GameObject buttonGameObject;
-    public Button buttonBackToHome;
+
+    public int TrashNeeded => trashNeeded;
+
+    private TaskInformation taskInformation;
+
+    public Action<int, int> Increase { get; private set; }
+
+    [Header("UI")]
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text descText;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text trashNeededText;
+    [SerializeField] private GameObject buttonGameObject;
+    [SerializeField] private Button buttonBackToHome;
 
     private void Awake() {
         taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
@@ -25,37 +34,28 @@ public class StageManagerScript : MonoBehaviour
         descText.text = taskInformation.taskDescription;
         trashNeeded = taskInformation.trashAvailable;
         trashNeededText.text = trashNeeded + " Trash remaining";
-        buttonBackToHome.onClick.AddListener(()=>BackToMenu());
+        buttonBackToHome.onClick.AddListener(() => BackToMenu());
         buttonGameObject.SetActive(false);
     }
 
-    public void BackToMenu(){
-        SceneManager.LoadScene("PlayerHouse");
-    }
+    private void OnEnable() => Increase += increase;
+    private void OnDisable() => Increase -= increase;
 
-    public int getScore(){
-        return score;
-    }
-    public void increaseScore(int value){
-        this.score += value;
-        scoreText.text = "Score :" + score;
-    }
+    public void BackToMenu() => SceneManager.LoadScene("PlayerHouse");
 
-    public int getTrashNeeded(){
-        return trashNeeded;
-    }
-    public void increaseTrashNeeded(int value){
-        if(this.trashNeeded > 0){
-            this.trashNeeded += value;
-            PlayerManager.Instance.SetTrashCollectedAllTime(value * -1);
-            trashNeededText.text = trashNeeded + " Trash remaining";
+    private void increase(int score, int trashNeeded) {
+        scoreText.text = "Score :" + (this.score += score);
+        if (this.trashNeeded > 0) {
+            this.trashNeeded += trashNeeded;
+            PlayerManager.Instance.SetTrashCollectedAllTime(trashNeeded * -1);
+            trashNeededText.text = this.trashNeeded + " Trash remaining";
         }
     }
 
-    public void StageFinisihed(){
+    public void StageFinisihed() {
         buttonGameObject.SetActive(true);
         trashNeededText.text = "There are no more trash";
-        PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score/100));
-        PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward); 
+        PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
+        PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward);
     }
 }
