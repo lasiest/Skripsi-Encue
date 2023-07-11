@@ -602,7 +602,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   trashNeeded: 0
-  taskInformation: {fileID: 0}
   titleText: {fileID: 1021875709}
   descText: {fileID: 1069562883}
   scoreText: {fileID: 1312805442}
@@ -1219,12 +1218,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f3604c075ad944a96f7f8f5ed3b2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashPrefab: {fileID: 3846704596462833313, guid: fc6d33f4f7915bc4a8888278257aca7f,
-    type: 3}
+  trashPrefab:
+  - {fileID: 3846704596462833313, guid: fc6d33f4f7915bc4a8888278257aca7f, type: 3}
   sampahInformation:
   - {fileID: 11400000, guid: 2e0162ea8f75b664eac7a466fab0faf0, type: 2}
   - {fileID: 11400000, guid: 96bc3f9b78b5d364ab9b6df08d1f1625, type: 2}
-  availableTrash: 2
+  trashAmount: 2
+  time: 0
 --- !u!54 &747164538
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3055,8 +3055,8 @@ MonoBehaviour:
   sampahInformation:
   - {fileID: 11400000, guid: 2e0162ea8f75b664eac7a466fab0faf0, type: 2}
   - {fileID: 11400000, guid: 96bc3f9b78b5d364ab9b6df08d1f1625, type: 2}
-  numberOfTrash: 5
-  checkingTime: 5
+  trashAmount: 5
+  time: 5
 --- !u!4 &1824405951
 Transform:
   m_ObjectHideFlags: 0
