@@ -16,7 +16,12 @@ public class StageManagerScript : Singleton<StageManagerScript>
 
     public int TrashNeeded => trashNeeded;
 
-    private TaskInformation taskInformation;
+    [SerializeField]
+    private int timeLimit;
+
+    public int TimeLimit => timeLimit;
+
+    [SerializeField] private TaskInformation taskInformation;
 
     public Action<int, int> Increase { get; private set; }
 
@@ -29,10 +34,11 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField] private Button buttonBackToHome;
 
     private void Awake() {
-        taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
+        // taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
         titleText.text = taskInformation.taskTitle;
         descText.text = taskInformation.taskDescription;
         trashNeeded = taskInformation.trashAvailable;
+        timeLimit = taskInformation.timeLimit;
         trashNeededText.text = trashNeeded + " Trash remaining";
         buttonBackToHome.onClick.AddListener(() => BackToMenu());
         buttonGameObject.SetActive(false);
@@ -58,4 +64,5 @@ public class StageManagerScript : Singleton<StageManagerScript>
         PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
         PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward);
     }
+
 }

@@ -18,4 +18,5 @@ MonoBehaviour:
   trashAvailable: 50
   reputationReward: 400
   moneyReward: 20000
+  timeLimit: 120
   sceneName: 1
