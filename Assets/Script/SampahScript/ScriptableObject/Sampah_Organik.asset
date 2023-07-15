@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 194f820938c6c4f4586abfe847a6c830, type: 3}
-  m_Name: Sampah1
+  m_Name: Sampah_Organik
   m_EditorClassIdentifier: 
-  namaSampah: BotolMerah
-  tipeSampah: 3
+  namaSampah: BotolHijau
+  tipeSampah: 1
   poinSampah: 100
-  materialSampah: {fileID: 2100000, guid: 0a3bcbe729123e442b039a172fe1a29d, type: 2}
+  materialSampah: {fileID: 2100000, guid: 7b345bbdd087e9944b39dd8a0a4c9d1b, type: 2}
