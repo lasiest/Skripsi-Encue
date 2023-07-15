@@ -21,9 +21,9 @@ public abstract class SpawnerTypeObject : MonoBehaviour
 
     protected void Spawn() 
     {
-        GameObject temp = Instantiate(trashPrefab[Random.Range(0, trashPrefab.Length - 1)], SpawnPosition, Quaternion.identity);
+        GameObject temp = Instantiate(trashPrefab[Random.Range(0, trashPrefab.Length)], SpawnPosition, Quaternion.identity);
         TrashScript trashScript = temp.GetComponent<TrashScript>();
-        trashScript.sampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length - 1)];
+        trashScript.sampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length)];
         Reduce();
     }
 
