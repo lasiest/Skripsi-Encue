@@ -6,12 +6,18 @@ public abstract class BinTypeObject : MonoBehaviour
 
     private int SetScore
     (
-        SampahInformation sampahInformation, 
+        SampahInformation trashInfo,
         SampahInformation.tipeSampahEnum none
-    ) 
-    => (sampahInformation.tipeSampah != none || TipeSampah != none) 
-    ? (sampahInformation.tipeSampah == TipeSampah ? 100 : -100) 
-    : 50;
+    )
+        => TipeSampah == none
+        ? trashInfo.poinSampah / 2
+        : (trashInfo.tipeSampah == none
+            ? trashInfo.poinSampah / 2 
+            : (trashInfo.tipeSampah == TipeSampah 
+                ? +trashInfo.poinSampah 
+                : -trashInfo.poinSampah
+            )
+        );
 
     protected void OnCollisionEnter(Collision other)
     {
