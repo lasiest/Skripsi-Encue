@@ -34,7 +34,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField] private Button buttonBackToHome;
 
     private void Awake() {
-        // taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
+        //taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
         titleText.text = taskInformation.taskTitle;
         descText.text = taskInformation.taskDescription;
         trashNeeded = taskInformation.trashAvailable;
@@ -45,6 +45,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
     }
 
     private void OnEnable() => Increase += increase;
+
     private void OnDisable() => Increase -= increase;
 
     public void BackToMenu() => SceneManager.LoadScene("PlayerHouse");
