@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4917567956745717328}
   - component: {fileID: 6177853066355129556}
   - component: {fileID: -2425889260495276905}
-  - component: {fileID: 6017501280991943962}
   - component: {fileID: 8214351168701054653}
   m_Layer: 7
   m_Name: Model2_Trash
@@ -116,19 +115,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &6017501280991943962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8868598518505317173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dcdafd73e7c7e94f82bd21f23ea2627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sampahInformation: {fileID: 0}
 --- !u!114 &8214351168701054653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,4 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da2293785b5a5540ab1f538901632e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabLerpMultiplier: 10
+  sampahInformation: {fileID: 0}
+  lerpMultiplier: 10
