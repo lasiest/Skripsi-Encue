@@ -1,30 +1,31 @@
 using UnityEngine;
 
-public class PlayerGrab : MonoBehaviour
+public class PlayerCrosshair : MonoBehaviour
 {
     [SerializeField] private Transform mainCamera;
     [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Transform trashGrabPoint;
 
-    private TrashGrabbable trashGrabbable;
+    private IGrabbable anyGrabbable;
+
+    [SerializeField] private Transform crosshair;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (trashGrabbable == null)
+            if (anyGrabbable == null)
             {
                 if (Physics.Raycast(mainCamera.position, mainCamera.forward, out RaycastHit hitInfo, maxDistance, layerMask))
                 {
-                    trashGrabbable = hitInfo.collider.GetComponent<TrashGrabbable>();
-                    trashGrabbable.BeingGrabbedOrReleased(true, trashGrabPoint);
+                    anyGrabbable = hitInfo.collider.GetComponent<IGrabbable>();
+                    anyGrabbable.BeingGrabbedOrReleased(true, crosshair);
                 }
             }
             else
             {
-                trashGrabbable.BeingGrabbedOrReleased(false, null);
-                trashGrabbable = null;
+                anyGrabbable.BeingGrabbedOrReleased(false, null);
+                anyGrabbable = null;
             }
         }
     }
