@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class TrashSpawnerTypeObject : MonoBehaviour, ISpawnable
+public abstract class TrashSpawnerTemplate : MonoBehaviour, ISpawnable
 {
     [SerializeField]
     protected GameObject[] trashPrefab;

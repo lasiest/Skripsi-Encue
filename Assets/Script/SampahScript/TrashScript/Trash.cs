@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrashTypeObject : MonoBehaviour
+public class Trash : MonoBehaviour
 {
     protected MeshRenderer meshRenderer;
 

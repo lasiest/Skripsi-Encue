@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NpcTrashSpawner : TrashSpawnerTypeObject
+public class NpcTrashSpawner : TrashSpawnerTemplate
 {
     protected override float Time => time = Random.Range(5, 20);
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrashBin : TrashTypeObject
+public class TrashBin : Trash
 {
     private SampahInformation collectedTrashInfo;
 

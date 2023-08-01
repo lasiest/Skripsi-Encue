@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrashGrabbable : TrashTypeObject, IGrabbable
+public class TrashGrabbable : Trash, IGrabbable
 {
     private Transform crosshair;
 
