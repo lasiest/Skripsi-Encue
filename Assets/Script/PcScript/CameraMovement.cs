@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 500f;
     public Transform playerBody;
     float xRotation = 0f;
 
