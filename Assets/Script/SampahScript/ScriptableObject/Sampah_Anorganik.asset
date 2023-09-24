@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a4c6c144e39a43439ba949ee24d0754, type: 3}
-  m_Name: Scenario 3
+  m_Script: {fileID: 11500000, guid: 194f820938c6c4f4586abfe847a6c830, type: 3}
+  m_Name: Sampah_Anorganik
   m_EditorClassIdentifier: 
-  taskIndex: 2
-  taskTitle: Clean the school
-  taskDescription: School shouldn't be this dirty
-  trashAvailable: 30
-  reputationReward: 300
-  moneyReward: 5000
-  timeLimit: 120
-  sceneName: 2
+  namaSampah: BotolKuning
+  tipeSampah: 2
+  poinSampah: 100
+  materialSampah: {fileID: 2100000, guid: 9f0b57d3b7791e9428ed9775476b3264, type: 2}

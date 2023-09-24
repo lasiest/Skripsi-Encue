@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 12f;
-    public float gravity = -9.8f;
-    public float jumpHeight = 5f;
+    public float speed = 2f;
+    public float gravity = -19.6f;
+    public float jumpHeight = 1f;
     
     public Transform groundCheck;
-    public float gorundDistance = 0.2f;
+    public float groundDistance = 0.1f;
     public LayerMask groundMask;
 
     Vector3 velocity;
@@ -18,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, gorundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if(isGrounded && velocity.y < 0){
             velocity.y = 0f;
         }

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4c6c144e39a43439ba949ee24d0754, type: 3}
   m_Name: Scenario 1
   m_EditorClassIdentifier: 
+  taskIndex: 0
   taskTitle: Clean the Beach
   taskDescription: the beach is filled with trash, and may cause major issue if not
     taken care of asap
   trashAvailable: 30
   reputationReward: 200
   moneyReward: 10000
+  timeLimit: 120
   sceneName: 0

@@ -11,6 +11,7 @@ public class TaskInformation : ScriptableObject
     public int trashAvailable;
     public int reputationReward;
     public int moneyReward;
+    public int timeLimit;
 
     public enum sceneNameEnun{
         BeachScenario,
