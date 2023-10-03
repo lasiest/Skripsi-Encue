@@ -9,6 +9,7 @@ public class PlayerCrosshair : MonoBehaviour
     private IGrabbable anyGrabbable;
 
     [SerializeField] private Transform crosshair;
+    private GameObject currentGameObject;
 
     private void Update()
     {
@@ -20,13 +21,19 @@ public class PlayerCrosshair : MonoBehaviour
                 {
                     anyGrabbable = hitInfo.collider.GetComponent<IGrabbable>();
                     anyGrabbable.BeingGrabbedOrReleased(true, crosshair);
+                    currentGameObject = hitInfo.transform.gameObject;
                 }
             }
             else
             {
                 anyGrabbable.BeingGrabbedOrReleased(false, null);
                 anyGrabbable = null;
+                currentGameObject = null;
             }
         }
+    }
+
+    public GameObject GetGrabbedObject(){
+        return currentGameObject;
     }
 }

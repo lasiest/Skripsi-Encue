@@ -271,7 +271,8 @@ GameObject:
   - component: {fileID: 267741035}
   - component: {fileID: 267741036}
   - component: {fileID: 267741034}
-  m_Layer: 0
+  - component: {fileID: 267741037}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -360,6 +361,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c53490a06ad6c4d9d2fa4dcd5ff148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &267741037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267741030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6001872c5186552488108752743b8f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCrosshair: {fileID: 267741034}
+  _decreasedMoveSpeed: 0
 --- !u!1001 &271990464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -860,7 +875,7 @@ GameObject:
   - component: {fileID: 621223260}
   - component: {fileID: 621223259}
   - component: {fileID: 621223258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1122,8 +1137,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 0.5008221, z: 10}
+  m_Center: {x: 0, y: -0.24958895, z: 0}
 --- !u!1 &682091877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757394463}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2936,7 +2951,7 @@ GameObject:
   - component: {fileID: 1733468728}
   - component: {fileID: 1733468730}
   - component: {fileID: 1733468729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3020,7 +3035,7 @@ GameObject:
   - component: {fileID: 1734510052}
   - component: {fileID: 1734510051}
   - component: {fileID: 1734510054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

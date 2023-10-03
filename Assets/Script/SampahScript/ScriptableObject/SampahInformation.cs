@@ -15,5 +15,6 @@ public class SampahInformation : ScriptableObject
     public tipeSampahEnum tipeSampah; 
     public int poinSampah;
     public Material materialSampah;
+    public float beratSampah;
 
 }

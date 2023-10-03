@@ -16,3 +16,4 @@ MonoBehaviour:
   tipeSampah: 2
   poinSampah: 100
   materialSampah: {fileID: 2100000, guid: 9f0b57d3b7791e9428ed9775476b3264, type: 2}
+  beratSampah: 10

@@ -128,4 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sampahInformation: {fileID: 0}
-  lerpMultiplier: 10
+  lerpMultiplier: 100

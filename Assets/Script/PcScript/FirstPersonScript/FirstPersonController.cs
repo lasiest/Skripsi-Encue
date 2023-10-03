@@ -22,8 +22,8 @@ public class FirstPersonController : Singleton<FirstPersonController>
 
     public bool IsOrderingPlayerToJump => AllowPlayerToJump && IsPlayerGrounded && Input.GetKeyDown(KeyCode.Space);
 
-    public float PlayerMoveSpeed { private get; set; }
-
+    public float PlayerMoveSpeed { get; set; }
+    public float PlayerMoveStrength => 2f;
     public float PlayerGravity => -19.6f;
 
     private readonly float mouseRotationSpeed = 1.75f;
@@ -35,6 +35,7 @@ public class FirstPersonController : Singleton<FirstPersonController>
     private Camera mainCamera;
 
     public CharacterController PlayerCharacterController { get; set; }
+    public FirstPersonMovementSpeedController firstPersonMovementSpeedController {get; set;}
 
     private Vector3 player3DMovementDirection;
 
@@ -47,6 +48,7 @@ public class FirstPersonController : Singleton<FirstPersonController>
         playerMovementState = PlayerWalkState;
         mainCamera = GetComponentInChildren<Camera>();
         PlayerCharacterController = GetComponent<CharacterController>();
+        firstPersonMovementSpeedController = GetComponent<FirstPersonMovementSpeedController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -62,7 +64,7 @@ public class FirstPersonController : Singleton<FirstPersonController>
             mainCamera.transform.localRotation = Quaternion.Euler(mainCameraXRotationAngle * Vector3.right);
             transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * mouseRotationSpeed * Vector3.up);
             ResetCurrentPlayer3DMovementDirectionY();
-            player3DMovementDirection = transform.TransformDirection(Input.GetAxis("Vertical") * PlayerMoveSpeed * Vector3.forward) + transform.TransformDirection(Input.GetAxis("Horizontal") * PlayerMoveSpeed * Vector3.right);
+            player3DMovementDirection = transform.TransformDirection(Input.GetAxis("Vertical") * (PlayerMoveSpeed - firstPersonMovementSpeedController._decreasedMoveSpeed) * Vector3.forward) + transform.TransformDirection(Input.GetAxis("Horizontal") * (PlayerMoveSpeed - firstPersonMovementSpeedController._decreasedMoveSpeed) * Vector3.right);
             player3DMovementDirection.y = CurrentPlayer3DMovementDirectionY;
             player3DMovementDirection.y += IsPlayerGrounded ? 0f : PlayerGravity * Time.deltaTime;
             ResetCurrentPlayer3DMovementDirectionY();
