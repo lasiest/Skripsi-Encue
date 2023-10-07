@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerCrosshair : Singleton<PlayerCrosshair>
 {
-    private Transform mainCamera;
-    private float maxDistance;
-    private LayerMask layerMask;
+    [SerializeField] private Transform mainCamera;
+    [SerializeField] private float maxDistance;
+    [SerializeField] private LayerMask layerMask;
     private IGrabbable anyGrabbable;
-    private Transform crosshair;
+    [SerializeField] private Transform crosshair;
     private GameObject target;
 
     public GameObject Target => target;

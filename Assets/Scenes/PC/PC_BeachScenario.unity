@@ -328,6 +328,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3f126e6f6efb2448c97d2b2062cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1734510053}
+  maxDistance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  crosshair: {fileID: 1733468728}
 --- !u!114 &267741035
 MonoBehaviour:
   m_ObjectHideFlags: 0
