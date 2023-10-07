@@ -1,25 +1,28 @@
-using UnityEngine;
-
-public class FirstPersonMovementSpeedController : MonoBehaviour
+public class FirstPersonMovementSpeedController : Singleton<FirstPersonMovementSpeedController>
 {
     private PlayerCrosshair Crosshair => PlayerCrosshair.Instance;
-    //private float _playerMoveSpeedDefault;
-    private float _decreasedMoveSpeed;
+
+    private readonly FirstPersonModel player = FirstPersonModel.Instance;
+
     private bool _alreadySended;
+    //private float _playerMoveSpeedDefault;
+
+    public float DecreasedMoveSpeed { get; set; }
 
     private void Update()
     {
-        if (!_alreadySended && Crosshair.Target != null)
+        _alreadySended = _alreadySended && Crosshair.Target == null;
+        if (!_alreadySended)
         {
-            _decreasedMoveSpeed = (Crosshair.Target.GetComponent<TrashGrabbable>().SampahInformation.beratSampah * 0.1f) /*- FirstPersonController.Instance.PlayerMoveStrength * 0.1f*/;
+            var beratSampah = Crosshair.Target.GetComponent<TrashGrabbable>().SampahInformation.beratSampah;
+            DecreasedMoveSpeed = 0.1f * (beratSampah - player.MoveStrength);
             //FirstPersonController.Instance.PlayerMoveSpeed = _playerMoveSpeedDefault - _decreasedMoveSpeed;
-            _alreadySended = true;
         }
-        else if (_alreadySended && Crosshair.Target == null)
+        else if (_alreadySended)
         {
             //FirstPersonController.Instance.PlayerMoveSpeed = _playerMoveSpeedDefault;
-            _decreasedMoveSpeed = 0f;
-            _alreadySended = false;
+            DecreasedMoveSpeed = 0f;
         }
+        _alreadySended = !_alreadySended;
     }
 }

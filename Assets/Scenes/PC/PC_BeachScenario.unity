@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 267741033}
   - component: {fileID: 267741031}
   - component: {fileID: 267741035}
+  - component: {fileID: 267741038}
   - component: {fileID: 267741036}
   - component: {fileID: 267741034}
   - component: {fileID: 267741037}
@@ -327,12 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3f126e6f6efb2448c97d2b2062cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1734510053}
-  maxDistance: 2
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  crosshair: {fileID: 1733468728}
 --- !u!114 &267741035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,8 +368,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6001872c5186552488108752743b8f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCrosshair: {fileID: 267741034}
-  _decreasedMoveSpeed: 0
+--- !u!114 &267741038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267741030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86e7225afe61eb4f933a6ac85c20d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &271990464
 PrefabInstance:
   m_ObjectHideFlags: 0
