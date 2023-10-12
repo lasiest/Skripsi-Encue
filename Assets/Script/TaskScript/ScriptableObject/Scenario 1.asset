@@ -16,8 +16,8 @@ MonoBehaviour:
   taskTitle: Clean the Beach
   taskDescription: the beach is filled with trash, and may cause major issue if not
     taken care of asap
-  trashAvailable: 30
+  trashAvailable: 20
   reputationReward: 200
   moneyReward: 10000
-  timeLimit: 120
+  timeLimit: 240
   sceneName: 0

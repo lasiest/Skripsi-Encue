@@ -30,7 +30,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField] private TMP_Text descText;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text trashNeededText;
-    [SerializeField] private GameObject buttonGameObject;
+    [SerializeField] private GameObject finishedPanelGameObject;
     [SerializeField] private Button buttonBackToHome;
 
     private void Awake() {
@@ -41,14 +41,14 @@ public class StageManagerScript : Singleton<StageManagerScript>
         timeLimit = taskInformation.timeLimit;
         trashNeededText.text = trashNeeded + " Trash remaining";
         buttonBackToHome.onClick.AddListener(() => BackToMenu());
-        buttonGameObject.SetActive(false);
+        finishedPanelGameObject.SetActive(false);
     }
 
     private void OnEnable() => Increase += increase;
 
     private void OnDisable() => Increase -= increase;
 
-    public void BackToMenu() => SceneManager.LoadScene("PlayerHouse");
+    public void BackToMenu() => SceneManager.LoadScene("PC_MainMenu");
 
     private void increase(int score, int trashNeeded) {
         scoreText.text = "Score :" + (this.score += score);
@@ -60,7 +60,10 @@ public class StageManagerScript : Singleton<StageManagerScript>
     }
 
     public void StageFinisihed() {
-        buttonGameObject.SetActive(true);
+        finishedPanelGameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
+        Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
         PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
         PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward);
