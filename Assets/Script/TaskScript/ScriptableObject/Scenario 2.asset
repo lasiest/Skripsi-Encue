@@ -15,8 +15,8 @@ MonoBehaviour:
   taskIndex: 1
   taskTitle: Clean the town
   taskDescription: The town never looks clean since 1970
-  trashAvailable: 50
+  trashAvailable: 25
   reputationReward: 400
   moneyReward: 20000
-  timeLimit: 120
+  timeLimit: 240
   sceneName: 1
