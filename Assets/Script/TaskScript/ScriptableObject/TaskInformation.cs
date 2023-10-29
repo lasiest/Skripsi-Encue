@@ -14,9 +14,9 @@ public class TaskInformation : ScriptableObject
     public int timeLimit;
 
     public enum sceneNameEnun{
-        BeachScenario,
-        TownScenario,
-        SchoolScenario
+        Level_1,
+        Level_2,
+        Level_3
     }
 
     public sceneNameEnun sceneName;
