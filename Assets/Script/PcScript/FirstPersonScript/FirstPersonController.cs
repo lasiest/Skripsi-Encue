@@ -3,6 +3,7 @@ using UnityEngine;
 public class FirstPersonController : Singleton<FirstPersonController>
 {
     private FirstPersonModel player;
+    public bool _cameraIsLocked;
 
     private void Start()
     {
@@ -21,9 +22,11 @@ public class FirstPersonController : Singleton<FirstPersonController>
         if (player.IsAllowedToMove)
         {
             player.MovementState = player.MovementState.Transition();
-            player.MainCameraXRotationAngle = Mathf.Clamp(player.MainCameraXRotationAngle - Input.GetAxis("Mouse Y") * player.MouseRotationSpeed, -player.MainCameraXRotationAngleLimit, player.MainCameraXRotationAngleLimit);
-            player.MainCamera.transform.localRotation = Quaternion.Euler(player.MainCameraXRotationAngle * Vector3.right);
-            transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * player.MouseRotationSpeed * Vector3.up);
+            if(!_cameraIsLocked){
+                player.MainCameraXRotationAngle = Mathf.Clamp(player.MainCameraXRotationAngle - Input.GetAxis("Mouse Y") * player.MouseRotationSpeed, -player.MainCameraXRotationAngleLimit, player.MainCameraXRotationAngleLimit);
+                player.MainCamera.transform.localRotation = Quaternion.Euler(player.MainCameraXRotationAngle * Vector3.right);
+                transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * player.MouseRotationSpeed * Vector3.up);                
+            }
             ResetCurrentPlayer3DMovementDirectionY();
             var decreasedMoveSpeed = player.MoveSpeed - player.MoveSpeedController.DecreasedMoveSpeed;
             player._3DMovementDirection = transform.TransformDirection(Input.GetAxis("Vertical") * decreasedMoveSpeed * Vector3.forward) + transform.TransformDirection(Input.GetAxis("Horizontal") * decreasedMoveSpeed * Vector3.right);
