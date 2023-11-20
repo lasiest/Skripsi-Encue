@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/PC/PC_MainMenu.unity
     guid: ef8d9cdb08dd40445961efdc7cfcd8a7
   - enabled: 1
-    path: Assets/Scenes/PC/PC_BeachScenario.unity
-    guid: b1de6860b79442a4a958990fae97af03
-  - enabled: 1
     path: Assets/Scenes/PC/Level_1.unity
     guid: e6fc2438a82148b4fb8929a7138477b3
   - enabled: 1
     path: Assets/Scenes/PC/Level_2.unity
     guid: bc2fd3689ede6064a831c341babbbdfd
+  - enabled: 1
+    path: Assets/Scenes/PC/Level_3.unity
+    guid: dbc5b0295cdf2ef458446267129ba807
   - enabled: 0
     path: Assets/Scenes/PlayerHouse.unity
     guid: 5a36afd833106994f8dbb7aa6e4f669f
