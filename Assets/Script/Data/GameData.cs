@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameData : MonoBehaviour
+public class GameData : Singleton<GameData>
 {
     public enum CurrentScene{
         MainMenu,
@@ -16,31 +15,57 @@ public class GameData : MonoBehaviour
 
     [Header("Level")]
     [SerializeField]private int currentLevel;
-    [SerializeField]private GameObject levelButton;
+    [SerializeField] private Button levelButton;
 
-    private void Start() {
-        if(currentScene == CurrentScene.MainMenu){
-            SetLockedLevel(LoadCurrentLevelData());
-        }
-        if(currentScene == CurrentScene.Level){
-            levelButton.GetComponent<Button>().onClick.AddListener(SetLevel);
+    private const string currentLevelData = "CurrentLevelData";
+    private const string newLevelData = "NewLevelData";
+
+    private void Start() => Setup();
+
+    private void Setup()
+    {
+        //TestLockedLevel();
+        SelectCurrentScene();
+    }
+
+    //private void TestLockedLevel() => PlayerPrefs.DeleteAll();
+
+    private void SelectCurrentScene()
+    {
+        switch (currentScene)
+        {
+            case CurrentScene.MainMenu:
+                //levelButton.onClick.AddListener(LoadLevel);
+                break;
+            case CurrentScene.Level:
+                levelButton.onClick.AddListener(SetCurrentLevel);
+                break;
         }
     }
 
-    public int LoadCurrentLevelData(){
-        return PlayerPrefs.GetInt("CurrentLevelData", 1);
-    }
+    //private void LoadLevel() => SceneManager.LoadScene(GetCurrentLevelData() - 1);
 
-    public void SetLockedLevel(int temp){
-        for(int i = 0; i < temp; i++){
+    //private int GetCurrentLevelData() => PlayerPrefs.GetInt(key: currentLevelData);
+
+    private int GetNewLevelData() => PlayerPrefs.GetInt(key: newLevelData, defaultValue: 1);
+
+    public void SetLockedLevel()
+    {
+        for (int i = 0; i < GetNewLevelData(); i++)
+        {
             availableLevels[i].GetComponent<Button>().interactable = true;
             availableLevels[i].transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
-    public void SetLevel(){
-        if(LoadCurrentLevelData() < currentLevel){
-            PlayerPrefs.SetInt("CurrentLevelData", currentLevel);
+    private void SetCurrentLevel() => PlayerPrefs.SetInt(key: currentLevelData, value: currentLevel);
+
+    public void UnlockLevel()
+    {
+        var nextLevel = currentLevel + 1;
+        if (GetNewLevelData() < nextLevel)
+        {
+            PlayerPrefs.SetInt(key: newLevelData, value: nextLevel);
         }
     }
 }
