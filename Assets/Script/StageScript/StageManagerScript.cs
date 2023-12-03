@@ -32,6 +32,12 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField] private TMP_Text trashNeededText;
     [SerializeField] private GameObject finishedPanelGameObject;
     [SerializeField] private Button buttonBackToHome;
+    
+    [Header("Required Component To Start Game")]
+    [SerializeField] private GameObject _openingCamera;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private Button _buttonToStartGame;
+    [SerializeField] private GameObject _uiCutscene;
 
     private void Awake() {
         //taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
@@ -42,6 +48,10 @@ public class StageManagerScript : Singleton<StageManagerScript>
         trashNeededText.text = trashNeeded + " Trash remaining";
         buttonBackToHome.onClick.AddListener(() => BackToMenu());
         finishedPanelGameObject.SetActive(false);
+    }
+
+    private void Start() {
+        _buttonToStartGame.onClick.AddListener(StageStart);
     }
 
     private void OnEnable() => Increase += increase;
@@ -59,10 +69,17 @@ public class StageManagerScript : Singleton<StageManagerScript>
         }
     }
 
+    public void StageStart(){
+        _player.gameObject.SetActive(true);
+        _uiCutscene.gameObject.SetActive(false);
+        _openingCamera.gameObject.SetActive(false);
+    }
+
     public void StageFinisihed() {
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
+        FirstPersonController.Instance._cameraIsLocked = true;
         Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
         PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));

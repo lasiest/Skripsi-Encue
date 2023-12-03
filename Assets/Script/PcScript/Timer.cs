@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float remainingTime;
     [SerializeField] private TaskInformation taskInformation;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
+    [SerializeField] private GameObject failedUI;
+    [SerializeField] private Button buttonToStartGame;
     private void Start() {
         remainingTime = taskInformation.timeLimit;
+        buttonToStartGame.onClick.AddListener(StartTimer);
+    }
+
+    private void StartTimer(){
         StartCoroutine(UpdateEverySecond());
     }
 
@@ -21,6 +28,9 @@ public class Timer : MonoBehaviour
             StartCoroutine(UpdateEverySecond());
         }else{
             Debug.Log("TIme Expired");
+            Cursor.lockState = CursorLockMode.None;
+            failedUI.SetActive(true);
+            FirstPersonController.Instance._cameraIsLocked = true;
             Time.timeScale = 0;
         }
     }
