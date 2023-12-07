@@ -28,7 +28,13 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void SetTrashCollectedAllTime(int value) => _playerTrashCollectedAllTime += value;
     public void SetPlayerReputation(int temp) => _playerReputation += temp;
-    public void SetPlayerMoney(int temp) => _playerMoney += temp;
+
+    public void SetPlayerMoney(int temp)
+    {
+        _playerMoney = GameData.Instance.PlayerMoney;
+        PlayerPrefs.SetInt(key: PlayerPrefsKey.PLAYER_MONEY, value: _playerMoney + temp);
+    }
+
     public GameObject[] GetTask() => GameObject.FindGameObjectsWithTag("Task");
     public void SetTask(TaskInformation taskInformation) => availableTaskData[availableTask.Length - 1] = taskInformation;
 }

@@ -17,8 +17,7 @@ public class GameData : Singleton<GameData>
     [SerializeField]private int currentLevel;
     [SerializeField] private Button levelButton;
 
-    private const string currentLevelData = "CurrentLevelData";
-    private const string newLevelData = "NewLevelData";
+    public int PlayerMoney => PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0);
 
     private void Start() => Setup();
 
@@ -45,9 +44,9 @@ public class GameData : Singleton<GameData>
 
     //private void LoadLevel() => SceneManager.LoadScene(GetCurrentLevelData() - 1);
 
-    //private int GetCurrentLevelData() => PlayerPrefs.GetInt(key: currentLevelData);
+    //private int GetCurrentLevelData() => PlayerPrefs.GetInt(key: PlayerPrefsKey.CURRENT_LEVEL_DATA);
 
-    private int GetNewLevelData() => PlayerPrefs.GetInt(key: newLevelData, defaultValue: 1);
+    private int GetNewLevelData() => PlayerPrefs.GetInt(key: PlayerPrefsKey.NEW_LEVEL_DATA, defaultValue: 1);
 
     public void SetLockedLevel()
     {
@@ -58,14 +57,14 @@ public class GameData : Singleton<GameData>
         }
     }
 
-    private void SetCurrentLevel() => PlayerPrefs.SetInt(key: currentLevelData, value: currentLevel);
+    private void SetCurrentLevel() => PlayerPrefs.SetInt(key: PlayerPrefsKey.CURRENT_LEVEL_DATA, value: currentLevel);
 
     public void UnlockLevel()
     {
         var nextLevel = currentLevel + 1;
         if (GetNewLevelData() < nextLevel)
         {
-            PlayerPrefs.SetInt(key: newLevelData, value: nextLevel);
+            PlayerPrefs.SetInt(key: PlayerPrefsKey.NEW_LEVEL_DATA, value: nextLevel);
         }
     }
 }
