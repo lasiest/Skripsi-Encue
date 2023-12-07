@@ -84,6 +84,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
         trashNeededText.text = "There are no more trash";
         PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
         PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward);
+        GameData.Instance.UnlockLevel();
     }
 
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 212768345}
-  m_IndirectSpecularColor: {r: 0.43596905, g: 0.55358094, b: 0.5430385, a: 1}
+  m_IndirectSpecularColor: {r: 0.19311544, g: 0.1975099, b: 0.20263651, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16345,7 +16345,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 449671099}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449671100}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -25219,7 +25219,7 @@ MonoBehaviour:
   currentScene: 1
   availableLevels: []
   currentLevel: 2
-  levelButton: {fileID: 449671100}
+  levelButton: {fileID: 721340173}
 --- !u!4 &1045080076
 Transform:
   m_ObjectHideFlags: 0
