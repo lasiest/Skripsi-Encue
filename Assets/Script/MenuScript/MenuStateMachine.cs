@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuManager : Singleton<MenuManager>
+public class MenuStateMachine : MonoBehaviour
 {
-    private Dictionary<MenuState, MenuTemplate> menuDictionary = new Dictionary<MenuState, MenuTemplate>();
+    private readonly Dictionary<MenuState, MenuTemplate> menuDictionary = new();
 
-    private Stack<MenuState> visits = new Stack<MenuState>();
+    private readonly Stack<MenuState> visits = new();
 
 #nullable enable
     private MenuTemplate? currentlyActiveMenu;
@@ -13,7 +13,7 @@ public class MenuManager : Singleton<MenuManager>
 
     private void Start()
     {
-        MenuTemplate[] menus = FindObjectsOfType<MenuTemplate>();
+        var menus = FindObjectsOfType<MenuTemplate>();
         foreach(var menu in menus)
         {
             menuDictionary.Add(menu.State, menu);
@@ -33,13 +33,15 @@ public class MenuManager : Singleton<MenuManager>
         }
     }
 
-    public void Back()
+    public void Backtrack()
     {
-        if (visits.Count < 2) Application.Quit();
+        if (visits.Count < 2) QuitApplication();
         else
         {
             visits.Pop();
             GoTo(visits.Peek(), false);
         }
     }
+
+    private void QuitApplication() => Application.Quit();
 }

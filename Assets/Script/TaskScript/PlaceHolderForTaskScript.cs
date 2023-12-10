@@ -9,9 +9,12 @@ public class PlaceHolderForTaskScript : MonoBehaviour
     public TaskInformation[] taskInformation;
     public GameObject[] taskAvailable;
     public GameObject taskPrefab;
+    private PlayerManager playerManager;
+
     private void Start() {
-        taskInformation = PlayerManager.Instance.taskInformation;
-        taskAvailable = PlayerManager.Instance.GetTask();
+        playerManager = FindObjectOfType<PlayerManager>();
+        taskInformation = playerManager.TaskInformation;
+        taskAvailable = playerManager.GetTask();
         for(int i = taskAvailable.Length; i < 2; i++){
             InstantiateTask();
         }
@@ -22,7 +25,7 @@ public class PlaceHolderForTaskScript : MonoBehaviour
         // }else if(taskAvailable.Length < 2){
         //     InstantiateTask();
         // }
-        taskAvailable = PlayerManager.Instance.GetTask();
+        taskAvailable = playerManager.GetTask();
     }
 
     public void InstantiateTask(){
@@ -32,12 +35,12 @@ public class PlaceHolderForTaskScript : MonoBehaviour
         taskManager.index = random;
         Debug.Log(taskManager.button);
         taskManager.button.onClick.AddListener(()=>AssignScene(taskInformation[taskManager.index]));
-        PlayerManager.Instance.GetTask();
-        PlayerManager.Instance.SetTask(taskInformation[taskManager.index]);
+        playerManager.GetTask();
+        playerManager.SetTask(taskInformation[taskManager.index]);
     }
 
     public void AssignScene(TaskInformation taskInformation){
-        PlayerManager.Instance.indexCurrentScenarioTask = taskInformation.taskIndex;
+        playerManager.IndexCurrentScenarioTask = taskInformation.taskIndex;
         Debug.Log(taskInformation.sceneName.ToString());
         SceneManager.LoadScene(taskInformation.sceneName.ToString());
     }

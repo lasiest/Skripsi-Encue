@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
             Debug.Log("TIme Expired");
             Cursor.lockState = CursorLockMode.None;
             failedUI.SetActive(true);
-            FirstPersonController.Instance._cameraIsLocked = true;
+            FindObjectOfType<FirstPersonController>()._cameraIsLocked = true;
             Time.timeScale = 0;
         }
     }

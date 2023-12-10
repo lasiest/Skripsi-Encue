@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class LevelMenu : MenuTemplate
 {
-    [SerializeField]
-    private Button shopButton;
+    [SerializeField] private Button shopButton;
 
     protected override void Setup()
     {
-        shopButton.onClick.AddListener(() => MenuManager.Instance.GoTo(MenuState.Shop));
-        GameData.Instance.SetLockedLevel();
+        shopButton.onClick.AddListener(() => FindObjectOfType<MenuStateMachine>().GoTo(MenuState.Shop));
+        FindObjectOfType<GameData>().SetLockedLevel();
     }
 
     public void LoadScene(GameObject level) => SceneManager.LoadScene(level.name);

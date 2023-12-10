@@ -4,20 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageManagerScript : Singleton<StageManagerScript>
+public class StageManagerScript : MonoBehaviour
 {
-    [SerializeField]
-    private int score;
+    [SerializeField] private int score;
 
     public int Score => score;
 
-    [SerializeField]
-    private int trashNeeded;
+    [SerializeField] private int trashNeeded;
 
     public int TrashNeeded => trashNeeded;
 
-    [SerializeField]
-    private int timeLimit;
+    [SerializeField] private int timeLimit;
 
     public int TimeLimit => timeLimit;
 
@@ -39,6 +36,8 @@ public class StageManagerScript : Singleton<StageManagerScript>
     [SerializeField] private Button _buttonToStartGame;
     [SerializeField] private GameObject _uiCutscene;
 
+    private PlayerManager playerManager;
+
     private void Awake() {
         //taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
         titleText.text = taskInformation.taskTitle;
@@ -46,7 +45,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
         trashNeeded = taskInformation.trashAvailable;
         timeLimit = taskInformation.timeLimit;
         trashNeededText.text = trashNeeded + " Trash remaining";
-        buttonBackToHome.onClick.AddListener(() => BackToMenu());
+        buttonBackToHome.onClick.AddListener(BackToMenu);
         finishedPanelGameObject.SetActive(false);
     }
 
@@ -64,7 +63,7 @@ public class StageManagerScript : Singleton<StageManagerScript>
         scoreText.text = "Score :" + (this.score += score);
         if (this.trashNeeded > 0) {
             this.trashNeeded += trashNeeded;
-            PlayerManager.Instance.SetTrashCollectedAllTime(trashNeeded * -1);
+            playerManager.SetTrashCollectedAllTime(trashNeeded * -1);
             trashNeededText.text = this.trashNeeded + " Trash remaining";
         }
     }
@@ -73,18 +72,19 @@ public class StageManagerScript : Singleton<StageManagerScript>
         _player.gameObject.SetActive(true);
         _uiCutscene.gameObject.SetActive(false);
         _openingCamera.gameObject.SetActive(false);
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     public void StageFinisihed() {
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
-        FirstPersonController.Instance._cameraIsLocked = true;
+        FindObjectOfType<FirstPersonController>()._cameraIsLocked = true;
         Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
-        PlayerManager.Instance.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
-        PlayerManager.Instance.SetPlayerMoney(taskInformation.moneyReward);
-        GameData.Instance.UnlockLevel();
+        playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
+        playerManager.SetPlayerMoney(taskInformation.moneyReward);
+        FindObjectOfType<GameData>().UnlockLevel();
     }
 
 }

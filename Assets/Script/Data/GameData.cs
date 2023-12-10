@@ -2,7 +2,7 @@ using UnityEngine;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameData : Singleton<GameData>
+public class GameData : MonoBehaviour
 {
     public enum CurrentScene{
         MainMenu,
@@ -16,6 +16,8 @@ public class GameData : Singleton<GameData>
     [Header("Level")]
     [SerializeField]private int currentLevel;
     [SerializeField] private Button levelButton;
+
+    private readonly int totalLevel = 3;
 
     public int PlayerMoney => PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0);
 
@@ -61,10 +63,13 @@ public class GameData : Singleton<GameData>
 
     public void UnlockLevel()
     {
-        var nextLevel = currentLevel + 1;
-        if (GetNewLevelData() < nextLevel)
+        if (currentLevel < totalLevel)
         {
-            PlayerPrefs.SetInt(key: PlayerPrefsKey.NEW_LEVEL_DATA, value: nextLevel);
+            var nextLevel = currentLevel + 1;
+            if (GetNewLevelData() < nextLevel)
+            {
+                PlayerPrefs.SetInt(key: PlayerPrefsKey.NEW_LEVEL_DATA, value: nextLevel);
+            }
         }
     }
 }

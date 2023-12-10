@@ -1,4 +1,6 @@
-public class FirstPersonMovementSpeedController : Singleton<FirstPersonMovementSpeedController>
+using UnityEngine;
+
+public class FirstPersonMovementSpeedController : MonoBehaviour
 {
     private PlayerCrosshair crosshair;
     private FirstPersonModel player;
@@ -9,8 +11,8 @@ public class FirstPersonMovementSpeedController : Singleton<FirstPersonMovementS
 
     private void Start()
     {
-        crosshair = PlayerCrosshair.Instance;
-        player = FirstPersonModel.Instance;
+        crosshair = FindObjectOfType<PlayerCrosshair>();
+        player = FindObjectOfType<FirstPersonModel>();
     }
 
     private void Update()

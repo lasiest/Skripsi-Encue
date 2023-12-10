@@ -20,7 +20,7 @@ public class ShopMenu : MenuTemplate
         RemoveItemBlueprint();
     }
 
-    private void GetPlayerMoney() => playerMoney.text = GameData.Instance.PlayerMoney.ToString();
+    private void GetPlayerMoney() => playerMoney.text = FindObjectOfType<GameData>().PlayerMoney.ToString();
 
     private void PopulateAllItems()
     {

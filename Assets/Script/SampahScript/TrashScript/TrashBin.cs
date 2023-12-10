@@ -20,9 +20,9 @@ public class TrashBin : Trash
     {
         if (other.gameObject.CompareTag("Trash"))
         {
-            TrashGrabbable trashGrabbable = other.gameObject.GetComponent<TrashGrabbable>();
+            var trashGrabbable = other.gameObject.GetComponent<TrashGrabbable>();
             collectedTrashInfo = trashGrabbable.SampahInformation;
-            StageManagerScript.Instance.Increase?.Invoke(SetScore(), -1);
+            FindObjectOfType<StageManagerScript>().Increase?.Invoke(SetScore(), -1);
             Destroy(other.gameObject);
         }
     }

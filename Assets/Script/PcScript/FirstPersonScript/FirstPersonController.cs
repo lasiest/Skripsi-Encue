@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirstPersonController : Singleton<FirstPersonController>
+public class FirstPersonController : MonoBehaviour
 {
     private FirstPersonModel player;
     public bool _cameraIsLocked;
@@ -9,7 +9,7 @@ public class FirstPersonController : Singleton<FirstPersonController>
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        player = FirstPersonModel.Instance;
+        player = FindObjectOfType<FirstPersonModel>();
         player.CharacterController = GetComponent<CharacterController>();
         player.MainCamera = GetComponentInChildren<Camera>();
         player.MovementState = player.WalkState;

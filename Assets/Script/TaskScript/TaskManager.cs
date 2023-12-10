@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TaskManager : MonoBehaviour
@@ -13,7 +11,7 @@ public class TaskManager : MonoBehaviour
     public Button button;
 
     private void Start() {
-        taskInformation = PlayerManager.Instance.taskInformation[index];
+        taskInformation = FindObjectOfType<PlayerManager>().TaskInformation[index];
         title.text = taskInformation.taskTitle;
         desc.text = taskInformation.taskDescription + "\n" + taskInformation.reputationReward + " Reputation & Rp. " + taskInformation.moneyReward;
     }

@@ -1,14 +1,20 @@
 using UnityEngine;
 
-public class FirstPersonModel : Singleton<FirstPersonModel>
+public class FirstPersonModel : MonoBehaviour
 {
     public IPlayerMovementState MovementState { get; set; }
 
-    public IPlayerMovementState WalkState => new FirstPersonWalkState();
+    public IPlayerMovementState WalkState => walkState;
 
-    public IPlayerMovementState RunState => new FirstPersonRunState();
+    public IPlayerMovementState RunState => runState;
 
-    public IPlayerMovementState JumpState => new FirstPersonJumpState();
+    public IPlayerMovementState JumpState => jumpState;
+
+    private readonly FirstPersonWalkState walkState = new();
+
+    private readonly FirstPersonRunState runState = new();
+
+    private readonly FirstPersonJumpState jumpState = new();
 
     public bool IsAllowedToMove { get; set; } = true;
 
@@ -24,7 +30,7 @@ public class FirstPersonModel : Singleton<FirstPersonModel>
 
     public float MoveSpeed { get; set; }
 
-    public FirstPersonMovementSpeedController MoveSpeedController => FirstPersonMovementSpeedController.Instance;
+    public FirstPersonMovementSpeedController MoveSpeedController => FindObjectOfType<FirstPersonMovementSpeedController>();
 
     public float MoveStrength => 2f;
 

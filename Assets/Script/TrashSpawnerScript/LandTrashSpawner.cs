@@ -7,9 +7,10 @@ public class LandTrashSpawner : TrashSpawnerTemplate
 
     public override IEnumerator WaitToSpawnFor(float time) 
     {
-        GameObject[] allTrash = GameObject.FindGameObjectsWithTag("Trash");
-        if (StageManagerScript.Instance.TrashNeeded == 0) StageManagerScript.Instance.StageFinisihed();
-        if (allTrash.Length < trashAmount && StageManagerScript.Instance.TrashNeeded > allTrash.Length) Spawn();
+        var stageManager = FindObjectOfType<StageManagerScript>();
+        var allTrash = GameObject.FindGameObjectsWithTag("Trash");
+        if (stageManager.TrashNeeded == 0) stageManager.StageFinisihed();
+        if (allTrash.Length < trashAmount && stageManager.TrashNeeded > allTrash.Length) Spawn();
         yield return new WaitForSeconds(time);
         StartCoroutine(WaitToSpawnFor(Time));
     }

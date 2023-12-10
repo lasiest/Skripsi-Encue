@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCrosshair : Singleton<PlayerCrosshair>
+public class PlayerCrosshair : MonoBehaviour
 {
     [SerializeField] private Transform mainCamera;
     [SerializeField] private float maxDistance;

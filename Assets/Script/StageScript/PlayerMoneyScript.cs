@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerMoneyScript : MonoBehaviour
 {
@@ -9,7 +7,8 @@ public class PlayerMoneyScript : MonoBehaviour
     public TMP_Text moneyText;
 
     private void Start() {
-        reputationText.text = "Rep : " + PlayerManager.Instance.GetPlayerReputation();
-        moneyText.text = "Money : " + PlayerManager.Instance.GetPlayerMoney();
+        var playerManager = FindObjectOfType<PlayerManager>();
+        reputationText.text = "Rep : " + playerManager.GetPlayerReputation();
+        moneyText.text = "Money : " + playerManager.GetPlayerMoney();
     }
 }
