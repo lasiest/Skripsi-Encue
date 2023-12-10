@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -194,6 +194,7 @@ MonoBehaviour:
   _pausePanel: {fileID: 2390675537121946873}
   _resumeButton: {fileID: 2390675537838492674}
   _backToMenuButton: {fileID: 2390675537605502673}
+  firstPersonController: {fileID: 0}
   currentState: 0
 --- !u!1 &2390675537121946873
 GameObject:
