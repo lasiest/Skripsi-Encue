@@ -23,7 +23,7 @@ public abstract class TrashSpawnerTemplate : MonoBehaviour, ISpawnable
     {
         GameObject newTrash = Instantiate(trashPrefab[Random.Range(0, trashPrefab.Length)], SpawnPosition, Quaternion.identity);
         TrashGrabbable trashGrabbable = newTrash.GetComponent<TrashGrabbable>();
-        trashGrabbable.SampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length)];
+        //trashGrabbable.SampahInformation = sampahInformation[Random.Range(0, sampahInformation.Length)];
         Reduce();
     }
 

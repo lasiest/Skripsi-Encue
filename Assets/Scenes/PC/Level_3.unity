@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 212768345}
-  m_IndirectSpecularColor: {r: 0.19311544, g: 0.1975099, b: 0.20263651, a: 1}
+  m_IndirectSpecularColor: {r: 0.43596905, g: 0.55358094, b: 0.5430385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -40749,8 +40749,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashPrefab:
-  - {fileID: 5364570359302599291, guid: 1878d5b36e8731f48a44d080a33f26e1, type: 3}
-  - {fileID: 8868598518505317173, guid: 5b5e41aff997a8046959393c22c1643e, type: 3}
+  - {fileID: 6397410204584883455, guid: 855c5a5c5b38b6a4b9412667f0f1f5c7, type: 3}
+  - {fileID: 560428357013259281, guid: 5880e4a7754a6d04c8d33e0dfc9bd65b, type: 3}
+  - {fileID: 1571460863539543509, guid: 09bf88ec0ba9f934cad79d8c1b4bbe00, type: 3}
+  - {fileID: 3732821882681568119, guid: 9ee3911e75b912e449c09551dab1cb40, type: 3}
+  - {fileID: 4482226436619245814, guid: 935bd2127ffca4b48b5d2aebe55f0a75, type: 3}
+  - {fileID: 5139737130698767760, guid: 5fa524bfac7cc8b4da4ae56929187aba, type: 3}
   sampahInformation:
   - {fileID: 11400000, guid: 3534be4489d81ba41909eaed9e47f305, type: 2}
   - {fileID: 11400000, guid: 96bc3f9b78b5d364ab9b6df08d1f1625, type: 2}
@@ -46805,7 +46809,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

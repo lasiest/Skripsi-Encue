@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashPrefab:
-  - {fileID: 3846704596462833313, guid: fc6d33f4f7915bc4a8888278257aca7f, type: 3}
+  - {fileID: 1571460863539543509, guid: 09bf88ec0ba9f934cad79d8c1b4bbe00, type: 3}
+  - {fileID: 4482226436619245814, guid: 935bd2127ffca4b48b5d2aebe55f0a75, type: 3}
   sampahInformation:
   - {fileID: 11400000, guid: 3534be4489d81ba41909eaed9e47f305, type: 2}
   - {fileID: 11400000, guid: 96bc3f9b78b5d364ab9b6df08d1f1625, type: 2}
