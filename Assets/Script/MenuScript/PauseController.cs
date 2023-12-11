@@ -13,7 +13,7 @@ public class PauseController : MonoBehaviour
     [SerializeField]private Button _backToMenuButton;
     public CurrentState currentState;
 
-    private FirstPersonController firstPersonController;
+    private FirstPersonModel player;
 
     private void Start() {
         _pausePanel.transform.GetChild(0);
@@ -26,7 +26,7 @@ public class PauseController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(currentState == CurrentState.Play){
-                firstPersonController ??= FindObjectOfType<FirstPersonController>();
+                player ??= FindObjectOfType<FirstPersonModel>();
                 PauseGame();
             }else if(currentState == CurrentState.Pause){
                 UnpauseGame();
@@ -39,7 +39,7 @@ public class PauseController : MonoBehaviour
         _pausePanel.SetActive(true);
         Time.timeScale = 0;
         currentState = CurrentState.Pause;
-        firstPersonController._cameraIsLocked = true;
+        player.CanTurnHead = false;
     }
 
     private void UnpauseGame(){
@@ -47,7 +47,7 @@ public class PauseController : MonoBehaviour
         _pausePanel.SetActive(false);
         Time.timeScale = 1;
         currentState = CurrentState.Play;
-        firstPersonController._cameraIsLocked = false;
+        player.CanTurnHead = true;
     }
 
     private void BackToMenu(){

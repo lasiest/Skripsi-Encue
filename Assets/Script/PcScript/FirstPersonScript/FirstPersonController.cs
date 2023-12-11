@@ -3,30 +3,47 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     private FirstPersonModel player;
-    public bool _cameraIsLocked;
 
-    private void Start()
+    private void Setup()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         player = FindObjectOfType<FirstPersonModel>();
         player.CharacterController = GetComponent<CharacterController>();
         player.MainCamera = GetComponentInChildren<Camera>();
-        player.MovementState = player.WalkState;
+    }
+    
+    private void Start()
+    {
+        Setup();
+        InitiateMovementState();
     }
 
-    private void ResetCurrentPlayer3DMovementDirectionY() => player.Current3DMovementDirectionY = player._3DMovementDirectionY;
+    private void InitiateMovementState()
+    {
+        var movementStateFactory = player.MovementStateFactory;
+        movementStateFactory.WalkState = movementStateFactory.Produce(FirstPersonMovementState.Walk);
+        movementStateFactory.JumpState = movementStateFactory.Produce(FirstPersonMovementState.Jump);
+        movementStateFactory.RunState = movementStateFactory.Produce(FirstPersonMovementState.Run);
+        player.MovementState = movementStateFactory.WalkState;
+    }
+
+    private void RotateCameraByMouse()
+    {
+        if (player.CanTurnHead)
+        {
+            player.MainCameraXRotationAngle = Mathf.Clamp(player.MainCameraXRotationAngle - Input.GetAxis("Mouse Y") * player.MouseRotationSpeed, -player.MainCameraXRotationAngleLimit, player.MainCameraXRotationAngleLimit);
+            player.MainCamera.transform.localRotation = Quaternion.Euler(player.MainCameraXRotationAngle * Vector3.right);
+            transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * player.MouseRotationSpeed * Vector3.up);
+        }
+    }
 
     private void Update()
     {
         if (player.IsAllowedToMove)
         {
             player.MovementState = player.MovementState.Transition();
-            if(!_cameraIsLocked){
-                player.MainCameraXRotationAngle = Mathf.Clamp(player.MainCameraXRotationAngle - Input.GetAxis("Mouse Y") * player.MouseRotationSpeed, -player.MainCameraXRotationAngleLimit, player.MainCameraXRotationAngleLimit);
-                player.MainCamera.transform.localRotation = Quaternion.Euler(player.MainCameraXRotationAngle * Vector3.right);
-                transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * player.MouseRotationSpeed * Vector3.up);                
-            }
+            RotateCameraByMouse();
             ResetCurrentPlayer3DMovementDirectionY();
             var decreasedMoveSpeed = player.MoveSpeed - player.MoveSpeedController.DecreasedMoveSpeed;
             player._3DMovementDirection = transform.TransformDirection(Input.GetAxis("Vertical") * decreasedMoveSpeed * Vector3.forward) + transform.TransformDirection(Input.GetAxis("Horizontal") * decreasedMoveSpeed * Vector3.right);
@@ -36,4 +53,6 @@ public class FirstPersonController : MonoBehaviour
             player.CharacterController.Move(player._3DMovementDirection * Time.deltaTime);
         }
     }
+
+    private void ResetCurrentPlayer3DMovementDirectionY() => player.Current3DMovementDirectionY = player._3DMovementDirectionY;
 }

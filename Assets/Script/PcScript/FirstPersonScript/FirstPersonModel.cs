@@ -2,19 +2,11 @@ using UnityEngine;
 
 public class FirstPersonModel : MonoBehaviour
 {
-    public IPlayerMovementState MovementState { get; set; }
+    public FirstPersonMovementStateTemplate MovementState { get; set; }
 
-    public IPlayerMovementState WalkState => walkState;
+    public FirstPersonMovementStateFactory MovementStateFactory { get; set; } = new();
 
-    public IPlayerMovementState RunState => runState;
-
-    public IPlayerMovementState JumpState => jumpState;
-
-    private readonly FirstPersonWalkState walkState = new();
-
-    private readonly FirstPersonRunState runState = new();
-
-    private readonly FirstPersonJumpState jumpState = new();
+    public bool CanTurnHead { get; set; } = true;
 
     public bool IsAllowedToMove { get; set; } = true;
 
@@ -30,8 +22,6 @@ public class FirstPersonModel : MonoBehaviour
 
     public float MoveSpeed { get; set; }
 
-    public FirstPersonMovementSpeedController MoveSpeedController => FindObjectOfType<FirstPersonMovementSpeedController>();
-
     public float MoveStrength => 2f;
 
     public float Gravity => -19.6f;
@@ -45,6 +35,8 @@ public class FirstPersonModel : MonoBehaviour
     public Camera MainCamera { get; set; }
 
     public CharacterController CharacterController { get; set; }
+
+    public FirstPersonMovementSpeedController MoveSpeedController => FindObjectOfType<FirstPersonMovementSpeedController>();
 
     private Vector3 _3DmovementDirection;
 

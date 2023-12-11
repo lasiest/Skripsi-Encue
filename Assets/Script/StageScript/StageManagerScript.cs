@@ -79,7 +79,7 @@ public class StageManagerScript : MonoBehaviour
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
-        FindObjectOfType<FirstPersonController>()._cameraIsLocked = true;
+        FindObjectOfType<FirstPersonModel>().CanTurnHead = false;
         Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
         playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
