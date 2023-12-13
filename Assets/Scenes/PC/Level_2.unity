@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 212768345}
-  m_IndirectSpecularColor: {r: 0.43596905, g: 0.55358094, b: 0.5430385, a: 1}
+  m_IndirectSpecularColor: {r: 0.19311544, g: 0.1975099, b: 0.20263651, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -36686,6 +36686,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da231375ab0485f43a507266fcf01a22, type: 3}
+--- !u!114 &1603864860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904363926912241565, guid: da231375ab0485f43a507266fcf01a22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603864859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969373581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86e7225afe61eb4f933a6ac85c20d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1608326230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48618,6 +48630,7 @@ MonoBehaviour:
   remainingTimeText: {fileID: 340505364}
   failedUI: {fileID: 449671101}
   buttonToStartGame: {fileID: 1570848831}
+  player: {fileID: 1603864860}
 --- !u!114 &2124331550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49128,6 +49141,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2390675536868195203, guid: c1e215664f71d93458bd4d036877f4ee,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1603864860}
     - target: {fileID: 2390675536868195206, guid: c1e215664f71d93458bd4d036877f4ee,
         type: 3}
       propertyPath: m_Name

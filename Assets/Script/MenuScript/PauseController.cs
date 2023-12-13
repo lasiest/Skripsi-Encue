@@ -11,9 +11,8 @@ public class PauseController : MonoBehaviour
     [SerializeField]private GameObject _pausePanel;
     [SerializeField]private Button _resumeButton;
     [SerializeField]private Button _backToMenuButton;
+    [SerializeField] private FirstPersonModel player;
     public CurrentState currentState;
-
-    private FirstPersonModel player;
 
     private void Start() {
         _pausePanel.transform.GetChild(0);
@@ -26,7 +25,6 @@ public class PauseController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(currentState == CurrentState.Play){
-                player ??= FindObjectOfType<FirstPersonModel>();
                 PauseGame();
             }else if(currentState == CurrentState.Pause){
                 UnpauseGame();

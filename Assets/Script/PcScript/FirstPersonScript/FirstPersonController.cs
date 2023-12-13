@@ -22,9 +22,9 @@ public class FirstPersonController : MonoBehaviour
     private void InitiateMovementState()
     {
         var movementStateFactory = player.MovementStateFactory;
-        movementStateFactory.WalkState = movementStateFactory.Produce(FirstPersonMovementState.Walk);
-        movementStateFactory.JumpState = movementStateFactory.Produce(FirstPersonMovementState.Jump);
-        movementStateFactory.RunState = movementStateFactory.Produce(FirstPersonMovementState.Run);
+        movementStateFactory.WalkState = movementStateFactory.Produce(client: player, stateType: FirstPersonMovementState.Walk);
+        movementStateFactory.JumpState = movementStateFactory.Produce(client: player, stateType: FirstPersonMovementState.Jump);
+        movementStateFactory.RunState = movementStateFactory.Produce(client: player, stateType: FirstPersonMovementState.Run);
         player.MovementState = movementStateFactory.WalkState;
     }
 

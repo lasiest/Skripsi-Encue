@@ -36,7 +36,9 @@ public class StageManagerScript : MonoBehaviour
     [SerializeField] private Button _buttonToStartGame;
     [SerializeField] private GameObject _uiCutscene;
 
-    private PlayerManager playerManager;
+    private PlayerManager _playerManager;
+    private FirstPersonModel player;
+    private GameData _dataLevel;
 
     private void Awake() {
         //taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
@@ -50,6 +52,9 @@ public class StageManagerScript : MonoBehaviour
     }
 
     private void Start() {
+        _playerManager = _player.GetComponent<PlayerManager>();
+        player = _player.GetComponent<FirstPersonModel>();
+        _dataLevel = FindObjectOfType<GameData>();
         _buttonToStartGame.onClick.AddListener(StageStart);
     }
 
@@ -63,7 +68,7 @@ public class StageManagerScript : MonoBehaviour
         scoreText.text = "Score :" + (this.score += score);
         if (this.trashNeeded > 0) {
             this.trashNeeded += trashNeeded;
-            playerManager.SetTrashCollectedAllTime(trashNeeded * -1);
+            _playerManager.SetTrashCollectedAllTime(trashNeeded * -1);
             trashNeededText.text = this.trashNeeded + " Trash remaining";
         }
     }
@@ -72,19 +77,17 @@ public class StageManagerScript : MonoBehaviour
         _player.gameObject.SetActive(true);
         _uiCutscene.gameObject.SetActive(false);
         _openingCamera.gameObject.SetActive(false);
-        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     public void StageFinisihed() {
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
-        FindObjectOfType<FirstPersonModel>().CanTurnHead = false;
+        player.CanTurnHead = false;
         Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
-        playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
-        playerManager.SetPlayerMoney(taskInformation.moneyReward);
-        FindObjectOfType<GameData>().UnlockLevel();
+        _playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
+        _playerManager.SetPlayerMoney(taskInformation.moneyReward);
+        _dataLevel.UnlockLevel();
     }
-
 }

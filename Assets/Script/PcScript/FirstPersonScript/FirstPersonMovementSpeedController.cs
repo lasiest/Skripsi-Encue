@@ -9,10 +9,12 @@ public class FirstPersonMovementSpeedController : MonoBehaviour
 
     public float DecreasedMoveSpeed { get; set; }
 
-    private void Start()
+    private void Start() => Setup();
+
+    private void Setup()
     {
-        crosshair = FindObjectOfType<PlayerCrosshair>();
-        player = FindObjectOfType<FirstPersonModel>();
+        crosshair = GetComponent<PlayerCrosshair>();
+        player = GetComponent<FirstPersonModel>();
     }
 
     private void Update()

@@ -5,7 +5,13 @@ public class NpcTrashSpawner : TrashSpawnerTemplate
 {
     protected override float Time => time = Random.Range(5, 20);
 
-    protected override void Reduce() => trashAmount--;
+    public override void Spawn()
+    {
+        base.Spawn();
+        Reduce();
+    }
+
+    private void Reduce() => trashAmount--;
 
     public override IEnumerator WaitToSpawnFor(float time) 
     {

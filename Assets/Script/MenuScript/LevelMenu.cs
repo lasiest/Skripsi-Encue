@@ -8,7 +8,7 @@ public class LevelMenu : MenuTemplate
 
     protected override void Setup()
     {
-        shopButton.onClick.AddListener(() => FindObjectOfType<MenuStateMachine>().GoTo(MenuState.Shop));
+        shopButton.onClick.AddListener(() => transform.parent.GetComponent<MenuStateMachine>().GoTo(MenuState.Shop));
         FindObjectOfType<GameData>().SetLockedLevel();
     }
 

@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class FirstPersonJumpState : FirstPersonMovementStateTemplate
 {
+    public FirstPersonJumpState(FirstPersonModel player) : base(player) { }
+
     public override void Execute()
     {
         var playerJumpHeight = 1f;
-        player ??= Object.FindObjectOfType<FirstPersonModel>();
         player.MoveSpeed = 1.5f * playerWalkSpeed;
         var playerCurrent3DMovementDirectionY = player.Current3DMovementDirectionY;
         player._3DMovementDirectionY = player.CharacterController.velocity.y < -1f && player.IsGrounded ? 0f : playerCurrent3DMovementDirectionY;

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
@@ -11,6 +10,8 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private GameObject failedUI;
     [SerializeField] private Button buttonToStartGame;
+    [SerializeField] private FirstPersonModel player;
+
     private void Start() {
         remainingTime = taskInformation.timeLimit;
         buttonToStartGame.onClick.AddListener(StartTimer);
@@ -30,7 +31,7 @@ public class Timer : MonoBehaviour
             Debug.Log("TIme Expired");
             Cursor.lockState = CursorLockMode.None;
             failedUI.SetActive(true);
-            FindObjectOfType<FirstPersonModel>().CanTurnHead = false;
+            player.CanTurnHead = false;
             Time.timeScale = 0;
         }
     }

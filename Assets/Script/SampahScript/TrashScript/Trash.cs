@@ -15,7 +15,7 @@ public class Trash : MonoBehaviour
 
     protected Rigidbody rigidBody;
 
-    protected void Start() 
+    protected virtual void Start() 
     {
         // meshRenderer = GetComponent<MeshRenderer>();
         // meshRenderer.sharedMaterial = sampahInformation.materialSampah;

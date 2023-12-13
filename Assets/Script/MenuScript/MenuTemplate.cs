@@ -14,6 +14,6 @@ public abstract class MenuTemplate : MonoBehaviour
     protected void Start()
     {
         Setup();
-        backButton.onClick.AddListener(FindObjectOfType<MenuStateMachine>().Backtrack);
+        backButton.onClick.AddListener(transform.parent.GetComponent<MenuStateMachine>().Backtrack);
     }
 }
