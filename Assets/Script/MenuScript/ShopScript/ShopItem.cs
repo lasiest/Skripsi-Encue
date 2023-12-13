@@ -7,5 +7,5 @@ using UnityEngine;
 
     public string name;
 
-    public float price;
+    public int price;
 }

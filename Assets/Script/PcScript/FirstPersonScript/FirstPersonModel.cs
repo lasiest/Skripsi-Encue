@@ -22,7 +22,7 @@ public class FirstPersonModel : MonoBehaviour
 
     public float MoveSpeed { get; set; }
 
-    public float MoveStrength => 2f;
+    public float MoveStrength => 2f * PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER);
 
     public float Gravity => -19.6f;
 

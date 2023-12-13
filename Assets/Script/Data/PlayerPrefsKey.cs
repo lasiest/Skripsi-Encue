@@ -5,4 +5,8 @@ public static class PlayerPrefsKey
     public const string NEW_LEVEL_DATA = "NewLevelData";
 
     public const string PLAYER_MONEY = "PlayerMoney";
+
+    public const string MOVEMENT_SPEED_MULTIPLIER = "MovementSpeedMultiplier";
+
+    public const string PLAYER_STRENGTH_MULTIPLIER = "PlayerStrength";
 }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 44753256770501226}
   - component: {fileID: 3614225378742977987}
   - component: {fileID: 926045179526698751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fuel Tank
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
