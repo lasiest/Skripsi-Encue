@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [SerializeField] AudioMixer audioMixer;
+
     public Sounds[] bgmSounds, sfxSounds;
     public AudioSource bgmSource, sfxSource;
+
+    private string BGM_MIXER = "BgmVolume";
+    private string SFX_MIXER = "SfxVolume";
 
     private void awake()
     {
@@ -25,8 +31,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME));
-        sfxVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME));
+        setMusicVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME));
+        setSfxVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME));
         playMusic(bgmSounds[0].name);
     }
 
@@ -49,14 +55,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void musicVolume(float volume)
+    public void setMusicVolume(float volume)
     {
-        bgmSource.volume = volume;
+        audioMixer.SetFloat(BGM_MIXER, Mathf.Log10(volume) * 20);
     }
 
-    public void sfxVolume(float volume)
+    public void setSfxVolume(float volume)
     {
-        sfxSource.volume = volume;
+        audioMixer.SetFloat(SFX_MIXER, Mathf.Log10(volume) * 20);
     }
 
 }

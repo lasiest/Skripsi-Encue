@@ -726,7 +726,8 @@ AudioSource:
   m_GameObject: {fileID: 428217146}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8770470852502425147, guid: 0a605bdd8ec54a445b5dbdca733fa150,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3173,7 +3174,8 @@ AudioSource:
   m_GameObject: {fileID: 1207548931}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2864621830695057813, guid: 0a605bdd8ec54a445b5dbdca733fa150,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5358,7 +5360,7 @@ GameObject:
   - component: {fileID: 1931894018}
   - component: {fileID: 1931894019}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: Level1AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5393,6 +5395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b3a4918716fcd4a9140904e98d5a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 0a605bdd8ec54a445b5dbdca733fa150, type: 2}
   bgmSounds:
   - name: Theme
     audioClip: {fileID: 8300000, guid: 3040fef6a1aa21148813570621f32be0, type: 3}
