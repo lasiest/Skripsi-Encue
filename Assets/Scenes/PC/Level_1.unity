@@ -5397,11 +5397,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0a605bdd8ec54a445b5dbdca733fa150, type: 2}
   bgmSounds:
-  - name: Theme
+  - name: Level1Theme
     audioClip: {fileID: 8300000, guid: 3040fef6a1aa21148813570621f32be0, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: GrabTrash
+    audioClip: {fileID: 8300000, guid: 8703f9454cf3e8547a76a47ff871989a, type: 3}
+  - name: ThrowTrash
+    audioClip: {fileID: 8300000, guid: 89c598cd4980fa64eafc4cbf697e0db9, type: 3}
   bgmSource: {fileID: 1207548932}
   sfxSource: {fileID: 428217147}
+  GRAB_TRASH: GrabTrash
+  THROW_TRASH: ThrowTrash
 --- !u!1 &1948227846
 GameObject:
   m_ObjectHideFlags: 0

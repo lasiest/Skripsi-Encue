@@ -33,6 +33,7 @@ public class PauseController : MonoBehaviour
     }
 
     private void PauseGame(){
+        AudioManager.Instance.pauseMusic(AudioManager.Instance.bgmSounds[0].name, true);
         Cursor.lockState = CursorLockMode.None;
         _pausePanel.SetActive(true);
         Time.timeScale = 0;
@@ -41,6 +42,7 @@ public class PauseController : MonoBehaviour
     }
 
     private void UnpauseGame(){
+        AudioManager.Instance.pauseMusic(AudioManager.Instance.bgmSounds[0].name, false);
         Cursor.lockState = CursorLockMode.Locked;
         _pausePanel.SetActive(false);
         Time.timeScale = 1;
@@ -49,6 +51,7 @@ public class PauseController : MonoBehaviour
     }
 
     private void BackToMenu(){
+        AudioManager.Instance.stopMusic(AudioManager.Instance.bgmSounds[0].name);
         Time.timeScale = 1;
         SceneManager.LoadScene("PC_MainMenu");
     }

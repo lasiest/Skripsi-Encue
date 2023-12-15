@@ -22,6 +22,7 @@ public class PlayerCrosshair : MonoBehaviour
                     anyGrabbable = hitInfo.collider.GetComponent<IGrabbable>();
                     anyGrabbable.BeingGrabbedOrReleased(true, crosshair);
                     target = hitInfo.transform.gameObject;
+                    AudioManager.Instance.playSFX(AudioManager.Instance.GRAB_TRASH);
                 }
             }
             else
@@ -29,6 +30,7 @@ public class PlayerCrosshair : MonoBehaviour
                 anyGrabbable.BeingGrabbedOrReleased(false, null);
                 anyGrabbable = null;
                 target = null;
+                AudioManager.Instance.playSFX(AudioManager.Instance.THROW_TRASH);
             }
         }
     }

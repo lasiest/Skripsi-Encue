@@ -13,10 +13,13 @@ public class AudioManager : MonoBehaviour
     public Sounds[] bgmSounds, sfxSounds;
     public AudioSource bgmSource, sfxSource;
 
+    public string GRAB_TRASH = "GrabTrash";
+    public string THROW_TRASH = "ThrowTrash";
+
     private string BGM_MIXER = "BgmVolume";
     private string SFX_MIXER = "SfxVolume";
 
-    private void awake()
+    private void Awake()
     {
         if(Instance == null)
         {
@@ -53,6 +56,36 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource.PlayOneShot(sfx.audioClip);
         }
+    }
+
+    public void pauseMusic(string name, Boolean isPause)
+    {
+        Sounds bgm = Array.Find(bgmSounds, x => x.name == name);
+        if (bgm != null)
+        {
+            if (isPause)
+            {
+                bgmSource.clip = bgm.audioClip;
+                bgmSource.Pause();
+            }
+            else
+            {
+                bgmSource.clip = bgm.audioClip;
+                bgmSource.UnPause();
+            }
+        }
+    }
+
+    public void stopMusic(string name)
+    {
+        Sounds bgm = Array.Find(bgmSounds, x => x.name == name);
+        if (bgm != null)
+        {
+            bgmSource.clip = bgm.audioClip;
+            bgmSource.Stop();
+        }
+
+        Destroy(gameObject);
     }
 
     public void setMusicVolume(float volume)

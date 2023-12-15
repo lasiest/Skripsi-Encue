@@ -80,6 +80,7 @@ public class StageManagerScript : MonoBehaviour
     }
 
     public void StageFinisihed() {
+        AudioManager.Instance.stopMusic(AudioManager.Instance.bgmSounds[0].name);
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 

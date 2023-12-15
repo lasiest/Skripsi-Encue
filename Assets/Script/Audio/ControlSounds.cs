@@ -28,7 +28,6 @@ public class ControlSounds : MonoBehaviour
     {
         PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME, bgmSlider.value);
         PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME, sfxSlider.value);
-
     }
 
     private void getBgmVolume()
