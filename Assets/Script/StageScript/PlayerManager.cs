@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
     [SerializeField] private string _playerName;
 
@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetPlayerMoney(int temp)
     {
-        _playerMoney = FindObjectOfType<GameData>().PlayerMoney;
+        _playerMoney = GameData.Instance.PlayerMoney;
         PlayerPrefs.SetInt(key: PlayerPrefsKey.PLAYER_MONEY, value: _playerMoney + temp);
     }
 

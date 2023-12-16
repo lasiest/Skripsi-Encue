@@ -10,7 +10,6 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private GameObject failedUI;
     [SerializeField] private Button buttonToStartGame;
-    [SerializeField] private FirstPersonModel player;
 
     private void Start() {
         remainingTime = taskInformation.timeLimit;
@@ -31,7 +30,7 @@ public class Timer : MonoBehaviour
             Debug.Log("TIme Expired");
             Cursor.lockState = CursorLockMode.None;
             failedUI.SetActive(true);
-            player.CanTurnHead = false;
+            FirstPersonModel.Instance.IsAllowedToMove = false;
             Time.timeScale = 0;
         }
     }

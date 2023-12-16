@@ -11,19 +11,19 @@ public class PauseController : MonoBehaviour
     [SerializeField]private GameObject _pausePanel;
     [SerializeField]private Button _resumeButton;
     [SerializeField]private Button _backToMenuButton;
-    [SerializeField] private FirstPersonModel player;
     public CurrentState currentState;
 
+    public bool CanBeDone { get; set; } = false;
+
     private void Start() {
-        _pausePanel.transform.GetChild(0);
-        _pausePanel.SetActive(false);
+        _pausePanel.SetActive(CanBeDone);
         _resumeButton.onClick.AddListener(UnpauseGame);
         _backToMenuButton.onClick.AddListener(BackToMenu);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(CanBeDone && Input.GetKeyDown(KeyCode.Escape)){
             if(currentState == CurrentState.Play){
                 PauseGame();
             }else if(currentState == CurrentState.Pause){
@@ -38,7 +38,7 @@ public class PauseController : MonoBehaviour
         _pausePanel.SetActive(true);
         Time.timeScale = 0;
         currentState = CurrentState.Pause;
-        player.CanTurnHead = false;
+        FirstPersonModel.Instance.IsAllowedToMove = false;
     }
 
     private void UnpauseGame(){
@@ -47,7 +47,7 @@ public class PauseController : MonoBehaviour
         _pausePanel.SetActive(false);
         Time.timeScale = 1;
         currentState = CurrentState.Play;
-        player.CanTurnHead = true;
+        FirstPersonModel.Instance.IsAllowedToMove = true;
     }
 
     private void BackToMenu(){

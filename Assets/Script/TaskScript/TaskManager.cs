@@ -11,7 +11,7 @@ public class TaskManager : MonoBehaviour
     public Button button;
 
     private void Start() {
-        taskInformation = FindObjectOfType<PlayerManager>().TaskInformation[index];
+        taskInformation = PlayerManager.Instance.TaskInformation[index];
         title.text = taskInformation.taskTitle;
         desc.text = taskInformation.taskDescription + "\n" + taskInformation.reputationReward + " Reputation & Rp. " + taskInformation.moneyReward;
     }

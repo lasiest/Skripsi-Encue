@@ -7,7 +7,7 @@ public class PlayerMoneyScript : MonoBehaviour
     public TMP_Text moneyText;
 
     private void Start() {
-        var playerManager = FindObjectOfType<PlayerManager>();
+        var playerManager = PlayerManager.Instance;
         reputationText.text = "Rep : " + playerManager.GetPlayerReputation();
         moneyText.text = "Money : " + playerManager.GetPlayerMoney();
     }

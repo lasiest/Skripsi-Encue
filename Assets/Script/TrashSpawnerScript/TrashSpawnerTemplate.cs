@@ -17,7 +17,7 @@ public abstract class TrashSpawnerTemplate : MonoBehaviour, ISpawnable
 
     public virtual void Spawn() => Instantiate(trashPrefab[Random.Range(0, trashPrefab.Length)], SpawnPosition, Quaternion.identity);
 
-    protected virtual void Start() => StartCoroutine(WaitToSpawnFor(Time));
+    protected void Start() => StartCoroutine(WaitToSpawnFor(Time));
 
     public abstract IEnumerator WaitToSpawnFor(float time);
 }

@@ -14,7 +14,7 @@ public class FirstPersonMovementSpeedController : MonoBehaviour
     private void Setup()
     {
         crosshair = GetComponent<PlayerCrosshair>();
-        player = GetComponent<FirstPersonModel>();
+        player = FirstPersonModel.Instance;
     }
 
     private void Update()

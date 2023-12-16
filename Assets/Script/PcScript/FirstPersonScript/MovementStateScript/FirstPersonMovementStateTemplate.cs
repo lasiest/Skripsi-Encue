@@ -2,11 +2,9 @@ using UnityEngine;
 
 public abstract class FirstPersonMovementStateTemplate : IState<FirstPersonMovementStateTemplate>
 {
-    protected FirstPersonModel player;
+    protected FirstPersonModel player = FirstPersonModel.Instance;
 
     protected float playerWalkSpeed = 2f * PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1f);
-
-    protected FirstPersonMovementStateTemplate(FirstPersonModel player) => this.player = player;
 
     public abstract void Execute();
 

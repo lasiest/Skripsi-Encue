@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class FirstPersonJumpState : FirstPersonMovementStateTemplate
 {
-    public FirstPersonJumpState(FirstPersonModel player) : base(player) { }
-
     public override void Execute()
     {
         var playerJumpHeight = 1f;

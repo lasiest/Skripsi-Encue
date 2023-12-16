@@ -12,7 +12,7 @@ public class PlaceHolderForTaskScript : MonoBehaviour
     private PlayerManager playerManager;
 
     private void Start() {
-        playerManager = FindObjectOfType<PlayerManager>();
+        playerManager = PlayerManager.Instance;
         taskInformation = playerManager.TaskInformation;
         taskAvailable = playerManager.GetTask();
         for(int i = taskAvailable.Length; i < 2; i++){

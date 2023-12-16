@@ -9,7 +9,7 @@ public class MainMenu : MenuTemplate
 
     protected override void Setup()
     {
-        var menuStateMachine = transform.parent.GetComponent<MenuStateMachine>();
+        var menuStateMachine = MenuStateMachine.Instance;
         playButton.onClick.AddListener(() => menuStateMachine.GoTo(MenuState.Level));
         settingsButton.onClick.AddListener(() => menuStateMachine.GoTo(MenuState.Settings));
     }

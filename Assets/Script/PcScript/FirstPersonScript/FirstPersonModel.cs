@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class FirstPersonModel : MonoBehaviour
+public class FirstPersonModel : Singleton<FirstPersonModel>
 {
     public FirstPersonMovementStateTemplate MovementState { get; set; }
 
     public FirstPersonMovementStateFactory MovementStateFactory { get; set; } = new();
-
-    public bool CanTurnHead { get; set; } = true;
 
     public bool IsAllowedToMove { get; set; } = true;
 
@@ -36,7 +34,7 @@ public class FirstPersonModel : MonoBehaviour
 
     public CharacterController CharacterController { get; set; }
 
-    public FirstPersonMovementSpeedController MoveSpeedController => FindObjectOfType<FirstPersonMovementSpeedController>();
+    public FirstPersonMovementSpeedController MoveSpeedController => GetComponent<FirstPersonMovementSpeedController>();
 
     private Vector3 _3DmovementDirection;
 

@@ -1,4 +1,4 @@
-public class FirstPersonMovementStateFactory : IFactory<FirstPersonMovementStateTemplate, FirstPersonModel, FirstPersonMovementState>
+public class FirstPersonMovementStateFactory : IFactory<FirstPersonMovementStateTemplate, FirstPersonMovementState>
 {
     public FirstPersonMovementStateTemplate WalkState { get; set; }
 
@@ -6,11 +6,11 @@ public class FirstPersonMovementStateFactory : IFactory<FirstPersonMovementState
 
     public FirstPersonMovementStateTemplate JumpState { get; set; }
 
-    public FirstPersonMovementStateTemplate Produce(FirstPersonModel client, FirstPersonMovementState stateType)
+    public FirstPersonMovementStateTemplate Produce(FirstPersonMovementState stateType)
         => stateType switch
         {
-            FirstPersonMovementState.Run => new FirstPersonRunState(client),
-            FirstPersonMovementState.Jump => new FirstPersonJumpState(client),
-            _ => new FirstPersonWalkState(client),
+            FirstPersonMovementState.Run => new FirstPersonRunState(),
+            FirstPersonMovementState.Jump => new FirstPersonJumpState(),
+            _ => new FirstPersonWalkState(),
         };
 }

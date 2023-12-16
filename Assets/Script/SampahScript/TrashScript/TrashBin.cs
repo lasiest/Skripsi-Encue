@@ -6,16 +6,6 @@ public class TrashBin : Trash
 
     private readonly SampahInformation.tipeSampahEnum none = SampahInformation.tipeSampahEnum.None;
 
-    private StageManagerScript stageManager;
-
-    private void Setup() => stageManager = FindObjectOfType<StageManagerScript>();
-
-    protected override void Start()
-    {
-        Setup();
-        base.Start();
-    }
-
     private int SetScore() => SampahInformation.tipeSampah == none
         ? +collectedTrashInfo.poinSampah / 2
         : (collectedTrashInfo.tipeSampah == none
@@ -32,7 +22,7 @@ public class TrashBin : Trash
         {
             var trashGrabbable = other.gameObject.GetComponent<TrashGrabbable>();
             collectedTrashInfo = trashGrabbable.SampahInformation;
-            stageManager.Increase?.Invoke(SetScore(), -1);
+            StageManagerScript.Instance.Increase?.Invoke(SetScore(), -1);
             Destroy(other.gameObject);
         }
     }

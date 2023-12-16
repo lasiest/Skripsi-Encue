@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -569,6 +569,7 @@ MonoBehaviour:
   - sprite: {fileID: 21300042, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: Double Coin
     price: 200000
+  spawnedItemBlueprint: []
   playerStatSpeed: {fileID: 1861002380}
   playerStatStrength: {fileID: 1227061763}
 --- !u!1 &104075233
@@ -754,7 +755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -246.43706}
+  m_AnchoredPosition: {x: 0, y: -246.43701}
   m_SizeDelta: {x: -618.24, y: -981.523}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114022625
@@ -6659,7 +6660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16256252, y: 0.34413332}
   m_AnchorMax: {x: 0.83900005, y: 0.88062966}
-  m_AnchoredPosition: {x: -1.5, y: -4.8090057}
+  m_AnchoredPosition: {x: -1.5, y: -4.809021}
   m_SizeDelta: {x: 3, y: 9.6189995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050595420

@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance;
-
     [SerializeField] AudioMixer audioMixer;
 
     public Sounds[] bgmSounds, sfxSounds;
@@ -18,19 +14,6 @@ public class AudioManager : MonoBehaviour
 
     private string BGM_MIXER = "BgmVolume";
     private string SFX_MIXER = "SfxVolume";
-
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {

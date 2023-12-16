@@ -3,13 +3,16 @@ using UnityEngine;
 public class PlayerCrosshair : MonoBehaviour
 {
     [SerializeField] private Transform mainCamera;
-    [SerializeField] private float maxDistance;
-    [SerializeField] private LayerMask layerMask;
-    private IGrabbable anyGrabbable;
-    [SerializeField] private Transform crosshair;
-    private GameObject target;
 
-    public GameObject Target => target;
+    [SerializeField] private float maxDistance;
+
+    [SerializeField] private LayerMask layerMask;
+
+    private IGrabbable anyGrabbable;
+
+    [SerializeField] private Transform crosshair;
+
+    public GameObject Target { get; private set; }
 
     private void Update()
     {
@@ -21,7 +24,7 @@ public class PlayerCrosshair : MonoBehaviour
                 {
                     anyGrabbable = hitInfo.collider.GetComponent<IGrabbable>();
                     anyGrabbable.BeingGrabbedOrReleased(true, crosshair);
-                    target = hitInfo.transform.gameObject;
+                    Target = hitInfo.transform.gameObject;
                     AudioManager.Instance.playSFX(AudioManager.Instance.GRAB_TRASH);
                 }
             }
@@ -29,7 +32,7 @@ public class PlayerCrosshair : MonoBehaviour
             {
                 anyGrabbable.BeingGrabbedOrReleased(false, null);
                 anyGrabbable = null;
-                target = null;
+                Target = null;
                 AudioManager.Instance.playSFX(AudioManager.Instance.THROW_TRASH);
             }
         }

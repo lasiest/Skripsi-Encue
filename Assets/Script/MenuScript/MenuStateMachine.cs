@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuStateMachine : MonoBehaviour
+public class MenuStateMachine : Singleton<MenuStateMachine>
 {
     private readonly Dictionary<MenuState, MenuTemplate> menuDictionary = new();
 

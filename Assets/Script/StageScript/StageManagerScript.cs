@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageManagerScript : MonoBehaviour
+public class StageManagerScript : Singleton<StageManagerScript>
 {
     [SerializeField] private int score;
 
@@ -36,10 +36,6 @@ public class StageManagerScript : MonoBehaviour
     [SerializeField] private Button _buttonToStartGame;
     [SerializeField] private GameObject _uiCutscene;
 
-    private PlayerManager _playerManager;
-    private FirstPersonModel player;
-    private GameData _dataLevel;
-
     private void Awake() {
         //taskInformation = PlayerManager.Instance.taskInformation[PlayerManager.Instance.indexCurrentScenarioTask];
         titleText.text = taskInformation.taskTitle;
@@ -52,9 +48,6 @@ public class StageManagerScript : MonoBehaviour
     }
 
     private void Start() {
-        _playerManager = _player.GetComponent<PlayerManager>();
-        player = _player.GetComponent<FirstPersonModel>();
-        _dataLevel = FindObjectOfType<GameData>();
         _buttonToStartGame.onClick.AddListener(StageStart);
     }
 
@@ -68,12 +61,14 @@ public class StageManagerScript : MonoBehaviour
         scoreText.text = "Score :" + (this.score += score);
         if (this.trashNeeded > 0) {
             this.trashNeeded += trashNeeded;
-            _playerManager.SetTrashCollectedAllTime(trashNeeded * -1);
+            PlayerManager.Instance.SetTrashCollectedAllTime(trashNeeded * -1);
             trashNeededText.text = this.trashNeeded + " Trash remaining";
         }
     }
 
     public void StageStart(){
+        var pauseController = FindObjectOfType<PauseController>();
+        pauseController.CanBeDone = true;
         _player.gameObject.SetActive(true);
         _uiCutscene.gameObject.SetActive(false);
         _openingCamera.gameObject.SetActive(false);
@@ -84,11 +79,12 @@ public class StageManagerScript : MonoBehaviour
         finishedPanelGameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
-        player.CanTurnHead = false;
+        FirstPersonModel.Instance.IsAllowedToMove = false;
         Time.timeScale = 0;
         trashNeededText.text = "There are no more trash";
-        _playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
-        _playerManager.SetPlayerMoney(taskInformation.moneyReward);
-        _dataLevel.UnlockLevel();
+        var playerManager = PlayerManager.Instance;
+        playerManager.SetPlayerReputation(taskInformation.reputationReward + (score / 100));
+        playerManager.SetPlayerMoney(taskInformation.moneyReward);
+        GameData.Instance.UnlockLevel();
     }
 }

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +24,7 @@ public class ShopMenu : MenuTemplate
         //RemoveItemBlueprint();
     }
 
-    private void GetPlayerMoney() => playerMoney.text = FindObjectOfType<GameData>().PlayerMoney.ToString();
+    private void GetPlayerMoney() => playerMoney.text = GameData.Instance.PlayerMoney.ToString();
 
     private void PopulateAllItems()
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameData : MonoBehaviour
+public class GameData : Singleton<GameData>
 {
     public enum CurrentScene{
         MainMenu,
