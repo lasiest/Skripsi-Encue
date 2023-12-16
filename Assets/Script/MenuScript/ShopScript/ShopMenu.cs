@@ -14,6 +14,7 @@ public class ShopMenu : MenuTemplate
     [SerializeField] private GameObject itemBlueprint;
 
     [SerializeField] private List<ShopItem> shopItems = new();
+    [SerializeField] private List<GameObject> spawnedItemBlueprint; 
     [SerializeField] private TextMeshProUGUI playerStatSpeed;
     [SerializeField] private TextMeshProUGUI playerStatStrength;
 
@@ -35,8 +36,16 @@ public class ShopMenu : MenuTemplate
             populatedItemTransform.GetComponent<Button>().onClick.AddListener(() => UpgradeStat(item));
             populatedItemTransform.GetChild(0).GetComponent<Image>().sprite = item.sprite;
             populatedItemTransform.GetChild(1).GetComponent<TextMeshProUGUI>().text = item.name.ToString();
-            populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = item.price.ToString();
+            if(item.name == "Speed"){
+                populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = ((int)(item.price + item.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1) - 1))).ToString();
+            }else if(item.name == "Strength"){
+                populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = ((int)(item.price + item.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1) - 1))).ToString();
+            }else{
+                populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = item.price.ToString();
+            }
             populatedItemTransform.transform.gameObject.SetActive(true);
+
+            spawnedItemBlueprint.Add(populatedItemTransform.gameObject);
         }
     }
 
@@ -46,20 +55,32 @@ public class ShopMenu : MenuTemplate
         itemBlueprint = null;
     }
 
+    private void RemoveAllShopItems()
+    {
+        foreach (var item in spawnedItemBlueprint)
+        {
+            Destroy(item);
+        }
+    }
+
     private void UpgradeStat(ShopItem shopItem){
         if(shopItem.name == "Speed"){
-            if(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) >= shopItem.price){
-                PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) - shopItem.price);
+            if(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) >= (shopItem.price + shopItem.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1) - 1))){
+                PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, (int)(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) - (shopItem.price + shopItem.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1) - 1))));
                 PlayerPrefs.SetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1) + 0.1f);
                 GetPlayerMoney();   
-                UpdateMultiplier();            
+                UpdateMultiplier();  
+                RemoveAllShopItems();    
+                PopulateAllItems();      
             }
         }else if(shopItem.name == "Strength"){
-            if(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) >= shopItem.price){
-                PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) - shopItem.price);
-                PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1) + 0.2f);
+            if(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) >= (shopItem.price + shopItem.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1) - 1))){
+                PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, (int)(PlayerPrefs.GetInt(key: PlayerPrefsKey.PLAYER_MONEY, defaultValue: 0) - (shopItem.price + shopItem.price * 10 * (PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1) - 1))));
+                PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1) + 0.1f);
                 GetPlayerMoney();
                 UpdateMultiplier();
+                RemoveAllShopItems();
+                PopulateAllItems();
             }
         }
     }
