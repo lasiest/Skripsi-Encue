@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class ControlSounds : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
     public Slider bgmSlider, sfxSlider;
 
-    private string BGM_MIXER = "BgmVolume";
-    private string SFX_MIXER = "SfxVolume";
+    private string BGM_MIXER = "BGM";
+    private string SFX_MIXER = "SFX";
 
     private void Start()
     {

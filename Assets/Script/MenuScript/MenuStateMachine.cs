@@ -11,7 +11,7 @@ public class MenuStateMachine : Singleton<MenuStateMachine>
     private MenuTemplate? currentlyActiveMenu;
 #nullable disable
 
-    private void Start()
+    private void Awake()
     {
         var menus = FindObjectsOfType<MenuTemplate>();
         foreach(var menu in menus)
