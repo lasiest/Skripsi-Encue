@@ -25,11 +25,11 @@ public class GameData : Singleton<GameData>
 
     private void Setup()
     {
-        //TestLockedLevel();
+        //ResetAllPlayerPrefs();
         SelectCurrentScene();
     }
 
-    //private void TestLockedLevel() => PlayerPrefs.DeleteAll();
+    //private void ResetAllPlayerPrefs() => PlayerPrefs.DeleteAll();
 
     private void SelectCurrentScene()
     {

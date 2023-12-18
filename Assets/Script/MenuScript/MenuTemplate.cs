@@ -7,8 +7,6 @@ public abstract class MenuTemplate : MonoBehaviour
 {
     [SerializeField] protected MenuState menuState;
 
-    public MenuState State => menuState;
-
     [SerializeField] protected Button backButton;
 
     [SerializeField] protected Transform itemContent;
@@ -17,27 +15,49 @@ public abstract class MenuTemplate : MonoBehaviour
 
     [SerializeField] protected List<MenuItem> menuItems = new();
 
-    protected List<GameObject> populatedItems = new();
+    public MenuState State => menuState;
+
+    protected int TotalItems => menuItems.Count;
+
+    private readonly List<GameObject> populatedItems = new();
 
     protected void DisableItemBlueprint() => itemBlueprint.SetActive(false);
 
     protected abstract void Setup();
 
-    private void GoBack() => backButton.onClick.AddListener(MenuStateMachine.Instance.Backtrack);
-
-    protected void OnEnable ()
+    protected void Awake()
     {
+        AssignBackButton();
         Setup();
-        GoBack();
     }
+
+    private void AssignBackButton() => backButton.onClick.AddListener(MenuStateMachine.Instance.Backtrack);
+
+    protected void OnDisable() => RemoveAllItems();
+
+    protected void RemoveAllItems()
+    {
+        foreach (var populatedItem in populatedItems) Destroy(populatedItem);
+        populatedItems.Clear();
+    }
+
+    protected void OnEnable() => PopulateAllItems();
 
     protected void PopulateAllItems()
     {
-        foreach (var item in menuItems)
+        var totalItems = TotalItems;
+        for (var index = 0; index < totalItems; index++)
         {
+            SetIdOfEach(menuItems[index], index, out MenuItem item);
             Print(item, out Transform populatedItemTransform);
             HandleItemValue(populatedItemTransform, item);
         }
+    }
+
+    private void SetIdOfEach(MenuItem menuItem, int index, out MenuItem item)
+    {
+        item = menuItem;
+        item.id = index;
     }
 
     private void Print(MenuItem item, out Transform populatedItemTransform)
@@ -51,14 +71,4 @@ public abstract class MenuTemplate : MonoBehaviour
     }
 
     protected virtual void HandleItemValue(Transform populatedItemTransform, MenuItem item) { }
-
-    protected void OnDisable() => RemoveAllItems();
-
-    private void RemoveAllItems()
-    {
-        foreach (var populatedItem in populatedItems)
-        {
-            Destroy(populatedItem);
-        }
-    }
 }

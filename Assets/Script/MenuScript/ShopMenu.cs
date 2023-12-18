@@ -7,17 +7,9 @@ public class ShopMenu : MenuTemplate
 {
     [SerializeField] private TextMeshProUGUI playerMoney;
 
-    [SerializeField] private List<GameObject> spawnedItemBlueprint; 
+    [SerializeField] private List<TextMeshProUGUI> statTMPs;
 
-    [SerializeField] private TextMeshProUGUI playerStatSpeed;
-
-    [SerializeField] private TextMeshProUGUI playerStatStrength;
-
-    private float PlayerMoney => GameData.Instance.PlayerMoney;
-
-    private float SpeedMultiplier => PlayerPrefs.GetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, 1f);
-
-    private float StrengthMultiplier => PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, 1f);
+    private int PlayerMoney => GameData.Instance.PlayerMoney;
 
     private void DisplayPlayerMoney() => playerMoney.text = PlayerMoney.ToString();
 
@@ -25,66 +17,45 @@ public class ShopMenu : MenuTemplate
     {
         DisableItemBlueprint();
         DisplayPlayerMoney();
-        PopulateAllItems();
-        UpdateMultiplier();
-    }
-
-    private string SetPriceOfEach(MenuItem item)
-    {
-        var price = item.value;
-        return item.name switch
-        {
-            "Speed" => ((int)(price + price * 10 * (SpeedMultiplier - 1))).ToString(),
-            "Strength" => ((int)(price + price * 10 * (StrengthMultiplier - 1))).ToString(),
-            _ => item.value.ToString()
-        };
+        UpdateStatMultiplier();
     }
 
     protected override void HandleItemValue(Transform populatedItemTransform, MenuItem item)
     {
-        populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = SetPriceOfEach(item);
+        item.type = item.id % 2 == 0 ? MenuItemType.Stat : MenuItemType.Consumable;
+        populatedItemTransform.GetChild(2).GetComponent<TextMeshProUGUI>().text = GetPriceOfEach(item).ToString();
         populatedItemTransform.GetComponent<Button>().onClick.AddListener(() => Purchase(item));
-        spawnedItemBlueprint.Add(populatedItemTransform.gameObject);
     }
 
-    private void UpgradeStat(MenuItem shopItem)
+    private float GetMultiplierOfEach(MenuItem item) => PlayerPrefs.GetFloat(key: item.name, defaultValue: 1f);
+
+    private int GetPriceOfEach(MenuItem item) => (int)item.value + (int)item.value * (int)(10f * (GetMultiplierOfEach(item) - 1f));
+
+    private void UpgradeStatFromEach(MenuItem item)
     {
-        var price = shopItem.value;
-        if (shopItem.name == "Speed" && PlayerMoney >= (price + price * 10 * (SpeedMultiplier - 1)))
+        if (item.type == MenuItemType.Stat && PlayerMoney >= GetPriceOfEach(item))
         {
-            PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, (int)(PlayerMoney - (price + price * 10 * (SpeedMultiplier - 1))));
-            PlayerPrefs.SetFloat(PlayerPrefsKey.MOVEMENT_SPEED_MULTIPLIER, SpeedMultiplier + 0.1f);
-        }
-        else if (shopItem.name == "Strength" && PlayerMoney >= (price + price * 10 * (StrengthMultiplier - 1)))
-        {
-            PlayerPrefs.SetInt(PlayerPrefsKey.PLAYER_MONEY, (int)(PlayerMoney - (price + price * 10 * (StrengthMultiplier - 1))));
-            PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER, StrengthMultiplier + 0.1f);
+            PlayerPrefs.SetInt(key: PlayerPrefsKey.PLAYER_MONEY, value: PlayerMoney - GetPriceOfEach(item));
+            PlayerPrefs.SetFloat(key: item.name, value: GetMultiplierOfEach(item) + 0.1f);
         }
     }
 
-    private void Purchase(MenuItem shopItem)
+    private void Purchase(MenuItem item)
     {
-        if (shopItem.name.In("Speed", "Strength"))
-        {
-            UpgradeStat(shopItem);
-            DisplayPlayerMoney();
-            UpdateMultiplier();
-            RemoveAllShopItems();
-            PopulateAllItems();
-        }
+        UpgradeStatFromEach(item);
+        DisplayPlayerMoney();
+        UpdateStatMultiplier();
+        RemoveAllItems();
+        PopulateAllItems();
     }
 
-    private void UpdateMultiplier()
+    private void UpdateStatMultiplier()
     {
-        playerStatSpeed.text = "Speed Multiplier : " + SpeedMultiplier;
-        playerStatStrength.text = "Strength Multiplier : " + StrengthMultiplier;
-    }
-
-    private void RemoveAllShopItems()
-    {
-        foreach (var item in spawnedItemBlueprint)
+        var totalItem = TotalItems;
+        for (var index = 0; index < totalItem; index += 2)
         {
-            Destroy(item);
+            var item = menuItems[index];
+            statTMPs[index / 2].text = item.name + " Multiplier : " + GetMultiplierOfEach(item);
         }
     }
 }
