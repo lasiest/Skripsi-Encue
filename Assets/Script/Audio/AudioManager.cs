@@ -12,13 +12,13 @@ public class AudioManager : Singleton<AudioManager>
     public string GRAB_TRASH = "GrabTrash";
     public string THROW_TRASH = "ThrowTrash";
 
-    private string BGM_MIXER = "BgmVolume";
-    private string SFX_MIXER = "SfxVolume";
+    private string BGM_MIXER = "BGM";
+    private string SFX_MIXER = "SFX";
 
     private void Start()
     {
-        setMusicVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME));
-        setSfxVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME));
+        setMusicVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME, 0f));
+        setSfxVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME, 0f));
         playMusic(bgmSounds[0].name);
     }
 
@@ -73,12 +73,12 @@ public class AudioManager : Singleton<AudioManager>
 
     public void setMusicVolume(float volume)
     {
-        audioMixer.SetFloat(BGM_MIXER, Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat(BGM_MIXER, volume);
     }
 
     public void setSfxVolume(float volume)
     {
-        audioMixer.SetFloat(SFX_MIXER, Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat(SFX_MIXER, volume);
     }
 
 }

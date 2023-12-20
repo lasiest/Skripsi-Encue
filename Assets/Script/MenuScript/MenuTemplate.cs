@@ -19,11 +19,9 @@ public abstract class MenuTemplate : MonoBehaviour
 
     protected int TotalItems => menuItems.Count;
 
-    private readonly List<GameObject> populatedItems = new();
+    private readonly List<Transform> populatedItemTransforms = new();
 
     protected void DisableItemBlueprint() => itemBlueprint.SetActive(false);
-
-    protected abstract void Setup();
 
     protected void Awake()
     {
@@ -33,17 +31,36 @@ public abstract class MenuTemplate : MonoBehaviour
 
     private void AssignBackButton() => backButton.onClick.AddListener(MenuStateMachine.Instance.Backtrack);
 
-    protected void OnDisable() => RemoveAllItems();
+    protected abstract void Setup();
 
-    protected void RemoveAllItems()
+    protected void OnDisable()
     {
-        foreach (var populatedItem in populatedItems) Destroy(populatedItem);
-        populatedItems.Clear();
+        RemoveAllItems();
+        EmptyPopulatedItemTransforms();
     }
 
-    protected void OnEnable() => PopulateAllItems();
+    private void RemoveAllItems()
+    {
+        var totalItems = TotalItems;
+        for (var index = 0; index < totalItems; index++)
+        {
+            var populatedItemTransform = populatedItemTransforms[index];
+            SetItemValue(populatedItemTransform, item: menuItems[index]);
+            Destroy(populatedItemTransform.gameObject);
+        }
+    }
 
-    protected void PopulateAllItems()
+    protected virtual void SetItemValue(Transform populatedItemTransform, MenuItem item) { }
+
+    private void EmptyPopulatedItemTransforms() => populatedItemTransforms.Clear();
+
+    protected void OnEnable()
+    {
+        EmptyPopulatedItemTransforms();
+        PopulateAllItems();
+    }
+
+    private void PopulateAllItems()
     {
         var totalItems = TotalItems;
         for (var index = 0; index < totalItems; index++)
@@ -51,6 +68,7 @@ public abstract class MenuTemplate : MonoBehaviour
             SetIdOfEach(menuItems[index], index, out MenuItem item);
             Print(item, out Transform populatedItemTransform);
             HandleItemValue(populatedItemTransform, item);
+            SetItemValue(populatedItemTransform, item);
         }
     }
 
@@ -60,14 +78,16 @@ public abstract class MenuTemplate : MonoBehaviour
         item.id = index;
     }
 
+    protected T GetChildComponent<T>(Transform populatedItemTransform, int index) => populatedItemTransform.GetChild(index).GetComponent<T>();
+
     private void Print(MenuItem item, out Transform populatedItemTransform)
     {
         var populatedItem = Instantiate(original: itemBlueprint, parent: itemContent);
-        populatedItems.Add(populatedItem);
         populatedItem.SetActive(true);
         populatedItemTransform = populatedItem.transform;
-        populatedItemTransform.GetChild(0).GetComponent<Image>().sprite = item.sprite;
-        populatedItemTransform.GetChild(1).GetComponent<TextMeshProUGUI>().text = item.name.ToString();
+        GetChildComponent<Image>(populatedItemTransform, index: 0).sprite = item.sprite;
+        GetChildComponent<TextMeshProUGUI>(populatedItemTransform, index: 1).text = item.name.ToString();
+        populatedItemTransforms.Add(populatedItemTransform);
     }
 
     protected virtual void HandleItemValue(Transform populatedItemTransform, MenuItem item) { }
