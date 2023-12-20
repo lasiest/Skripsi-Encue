@@ -19,4 +19,5 @@ MonoBehaviour:
   reputationReward: 500
   moneyReward: 30000
   timeLimit: 300
+  requiredPoint: 1500
   sceneName: 2

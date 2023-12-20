@@ -278,6 +278,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75729584}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &85306164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1425255604948356004, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 8484037343377568308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &145395811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 138466, guid: 4dd1e9d81689b8c45892550d2670fbb8,
@@ -829,6 +841,12 @@ Transform:
   m_Father: {fileID: 1931894018}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &444437299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3986316220332493176, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 8484037343377568308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &461451084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1895,6 @@ MonoBehaviour:
   remainingTimeText: {fileID: 199553774}
   failedUI: {fileID: 840608441}
   buttonToStartGame: {fileID: 973380603}
-  player: {fileID: 343655819}
 --- !u!114 &847776137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,8 +1915,13 @@ MonoBehaviour:
   descText: {fileID: 681574780}
   scoreText: {fileID: 1519845280}
   trashNeededText: {fileID: 566930173}
-  finishedPanelGameObject: {fileID: 2061484945}
-  buttonBackToHome: {fileID: 1617328190}
+  successPanelGameObject: {fileID: 2061484945}
+  successButtonBackToHome: {fileID: 1617328190}
+  failedPanelGameObject: {fileID: 840608441}
+  failedButtonBackToHome: {fileID: 8484037343377568309}
+  rewardInfo: {fileID: 444437299}
+  coinsText: {fileID: 85306164}
+  pointsText: {fileID: 2043050930}
   _openingCamera: {fileID: 1104288282}
   _player: {fileID: 1002036417}
   _buttonToStartGame: {fileID: 973380603}
@@ -5718,6 +5740,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &2043050930 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8089427115648060422, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 8484037343377568308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061484945 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8484037341679514021, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
@@ -5922,16 +5956,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 840608443, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fdf79bca77b01e749b830817a9d05bc0,
-        type: 3}
-    - target: {fileID: 1304269110, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1332c57572a0c4443b09986d1cb63727,
-        type: 3}
+    - target: {fileID: 340450318, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: The beach looks very dirty and people starting to abondoned this beach
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860558074, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: This beach always looks clean and very lively i hope this beach will
+        stays that way
+      objectReference: {fileID: 0}
     - target: {fileID: 8484037341552203334, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6042,11 +6075,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasForCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 8484037341679514023, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    - target: {fileID: 8594038706678471755, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1332c57572a0c4443b09986d1cb63727,
-        type: 3}
+      propertyPath: m_text
+      value: 'I cleaned the beach today and i will continue cleaning this beach
+
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+--- !u!114 &8484037343377568309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 136381508, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 8484037343377568308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

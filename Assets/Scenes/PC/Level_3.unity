@@ -6037,7 +6037,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.76e-43, z: 0, w: 7.51e-43}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 3.218082e-22}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -21684,6 +21684,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 490890, guid: 0401a3f0164b9cf40bd8c14f152e69ab,
     type: 3}
   m_PrefabInstance: {fileID: 905565614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &911609966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8089427115648060422, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920559533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &911609967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1425255604948356004, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920559533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &911609968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3986316220332493176, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920559533}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &914067234
 PrefabInstance:
@@ -43709,6 +43739,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 340450318, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: This parks looks abondoned
+      objectReference: {fileID: 0}
     - target: {fileID: 840608443, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -43719,6 +43753,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2706d067c28bc094484cca5208e2d49e,
         type: 3}
+    - target: {fileID: 1860558074, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: The parks look great and maintained, many people just chill here. its
+        feels good just to be here
+      objectReference: {fileID: 0}
     - target: {fileID: 8484037341552203334, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
         type: 3}
       propertyPath: m_Pivot.x
@@ -43835,6 +43874,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2706d067c28bc094484cca5208e2d49e,
         type: 3}
+    - target: {fileID: 8594038706678471755, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+        type: 3}
+      propertyPath: m_text
+      value: 'I have succeed keeping this park clean
+
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
 --- !u!114 &1920559534 stripped
@@ -43865,6 +43912,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1920559537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 136381508, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920559533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1920559538 stripped
@@ -49087,7 +49146,6 @@ MonoBehaviour:
   remainingTimeText: {fileID: 1920559536}
   failedUI: {fileID: 1920559538}
   buttonToStartGame: {fileID: 1794011770}
-  player: {fileID: 1603864861}
 --- !u!114 &2124331550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49108,8 +49166,13 @@ MonoBehaviour:
   descText: {fileID: 1703934761}
   scoreText: {fileID: 1012534002}
   trashNeededText: {fileID: 878557753}
-  finishedPanelGameObject: {fileID: 1920559535}
-  buttonBackToHome: {fileID: 1920559534}
+  successPanelGameObject: {fileID: 1920559535}
+  successButtonBackToHome: {fileID: 1920559534}
+  failedPanelGameObject: {fileID: 1920559538}
+  failedButtonBackToHome: {fileID: 1920559537}
+  rewardInfo: {fileID: 911609968}
+  coinsText: {fileID: 911609967}
+  pointsText: {fileID: 911609966}
   _openingCamera: {fileID: 2033401595}
   _player: {fileID: 1603864860}
   _buttonToStartGame: {fileID: 1794011770}

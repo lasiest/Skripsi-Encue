@@ -12,6 +12,7 @@ public class TaskInformation : ScriptableObject
     public int reputationReward;
     public int moneyReward;
     public int timeLimit;
+    public int requiredPoint;
 
     public enum sceneNameEnun{
         Level_1,

@@ -11211,6 +11211,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 340450318, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: I should have done better to clean this town, this small town looks
+        almost dead
+      objectReference: {fileID: 0}
     - target: {fileID: 840608443, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -11221,6 +11226,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4bee21a03b4639840a670529029115bd,
         type: 3}
+    - target: {fileID: 1860558074, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+      propertyPath: m_text
+      value: There's a lot of activity around here even though its a small town
+      objectReference: {fileID: 0}
     - target: {fileID: 8484037341552203334, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
         type: 3}
       propertyPath: m_Pivot.x
@@ -11337,11 +11346,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4bee21a03b4639840a670529029115bd,
         type: 3}
+    - target: {fileID: 8594038706678471755, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+        type: 3}
+      propertyPath: m_text
+      value: 'This town will continue activity as usual as long as i am around
+
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
+--- !u!114 &449671100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 136381508, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 449671099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &449671101 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 840608441, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 449671099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &449671102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8089427115648060422, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 449671099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &449671103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1425255604948356004, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
+    type: 3}
+  m_PrefabInstance: {fileID: 449671099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &449671104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3986316220332493176, guid: b54e8a6a8fd731243bdd712e9d9c7b43,
     type: 3}
   m_PrefabInstance: {fileID: 449671099}
   m_PrefabAsset: {fileID: 0}
@@ -48818,7 +48877,6 @@ MonoBehaviour:
   remainingTimeText: {fileID: 340505364}
   failedUI: {fileID: 449671101}
   buttonToStartGame: {fileID: 1570848831}
-  player: {fileID: 1603864860}
 --- !u!114 &2124331550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48839,8 +48897,13 @@ MonoBehaviour:
   descText: {fileID: 1703934761}
   scoreText: {fileID: 1012534002}
   trashNeededText: {fileID: 878557753}
-  finishedPanelGameObject: {fileID: 251325659}
-  buttonBackToHome: {fileID: 721340173}
+  successPanelGameObject: {fileID: 251325659}
+  successButtonBackToHome: {fileID: 721340173}
+  failedPanelGameObject: {fileID: 449671101}
+  failedButtonBackToHome: {fileID: 449671100}
+  rewardInfo: {fileID: 449671104}
+  coinsText: {fileID: 449671103}
+  pointsText: {fileID: 449671102}
   _openingCamera: {fileID: 124993951}
   _player: {fileID: 1969373581}
   _buttonToStartGame: {fileID: 1570848831}
