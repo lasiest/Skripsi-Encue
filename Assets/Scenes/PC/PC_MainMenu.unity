@@ -4742,7 +4742,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 465503407}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.59090906
+  m_Size: 0.5416667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5023,7 +5023,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1100}
+  m_SizeDelta: {x: 0, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1386724810
 GameObject:
@@ -7784,16 +7784,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "SimplePoly - Town Pack by Gnome's Artworks\nPlastic Trash Bins by SpaceZeta\nCartoon
-    Palmtree and Umbrellas by 8bull\n2D Casual UI HD by MiMU STUDIO\nSkybox Series
-    Free by Avionx\nCola Can by Rodolfo Rubens\nLow Poly Fruit Pickups by Rem Storms\nCigarette
-    Lighter PBR by devotid\nFuel Tank 10L by AK \nTenang setiap hari BGM \"Brick
-    Road\" [Termasuk Seri Penyihir Magang/Penyihir Magang dan Hutan Misterius]\n[Kedai
-    Kopi di Yume] - Mitsukiyo [ALBUM LENGKAP] - Kedai Kopi di Yume\n[Kedai Kopi Yume]
-    - Mitsukiyo [ALBUM LENGKAP] - YU.ME.NO!\n[BGM Gratis] Tema Pensiunan Penyihir
-    \"Melankolis Pensiunan Penyihir\" [Seri Penyihir Magang]\nEFEK SUARA SAMPAH PLASTIK
-    | PLASTIC WASTE SOUND EFFECT by Kumpulan Sound Effect\nSTUDIO TAKING OUT TRASH
-    SOUND suara membuang sampah by YOU SOUND\n"
+  m_text: "SimplePoly - Town Pack by Gnome's Artworks\r\nPlastic Trash Bins by SpaceZeta\r\nCartoon
+    Palmtree and Umbrellas by 8bull\r\n2D Casual UI HD by MiMU STUDIO\r\nSkybox Series
+    Free by Avionx\r\nCola Can by Rodolfo Rubens\r\nLow Poly Fruit Pickups by Rem
+    Storms\r\nCigarette Lighter PBR by devotid\r\nFuel Tank 10L by AK \r\nOdayakana
+    nichijo-kei BGM \u201Crenga-dzukuri no kaido\u201D [minarai majo shirizu/ minarai
+    majo to fushigi no mori shuroku]\r\n[Yume no kissaten] - mitsukiyo (Mitsukiyo)
+    [FULL arubamu] - yume no kissaten (Coffee Shop in Yume)\r\n[Yume no kissaten]
+    - mitsukiyo (Mitsukiyo) [FULL arubamu] - YU. ME. NO!\r\n[Furi BGM] go inkyo majo
+    no tema \u201Cgo inkyo majo no yuutsu\u201D [minarai majo shirizu]\r\nEFEK SUARA
+    SAMPAH PLASTIK | PLASTIC WASTE SOUND EFFECT by Kumpulan Sound Effect\r\nSTUDIO
+    TAKING OUT TRASH SOUND suara membuang sampah by YOU SOUND"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8231,6 +8232,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050595418}
   m_CullTransparentMesh: 1
+--- !u!1 &2054345243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054345244}
+  - component: {fileID: 2054345246}
+  - component: {fileID: 2054345245}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2054345244
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054345243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2120017615}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 375}
+  m_SizeDelta: {x: 500, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2054345245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054345243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Credits
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: afe6c30f574ebab438d061c83ae64d50, type: 2}
+  m_sharedMaterial: {fileID: 3455596963978498087, guid: afe6c30f574ebab438d061c83ae64d50,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 100
+  m_fontSizeBase: 100
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2054345246
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054345243}
+  m_CullTransparentMesh: 1
 --- !u!1 &2055857428
 GameObject:
   m_ObjectHideFlags: 0
@@ -8664,6 +8801,7 @@ RectTransform:
   - {fileID: 689656716}
   - {fileID: 1887942667}
   - {fileID: 1291702498}
+  - {fileID: 2054345244}
   m_Father: {fileID: 1647431409}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

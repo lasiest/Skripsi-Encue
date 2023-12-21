@@ -66,10 +66,10 @@ public class ShopMenu : MenuTemplate
     private void DisplayStatMultiplier()
     {
         var totalItems = TotalItems;
-        for (var index = 0; index < totalItems; index += 2)
+        for (var index = 0; index < totalItems; index++)
         {
             var item = menuItems[index];
-            statTMPs[index / 2].text = item.name + " Multiplier : " + GetMultiplierOfEach(item);
+            statTMPs[index].text = item.name + " Multiplier : " + GetMultiplierOfEach(item);
         }
     }
 }
