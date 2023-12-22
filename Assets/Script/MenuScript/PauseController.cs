@@ -35,6 +35,7 @@ public class PauseController : MonoBehaviour
     private void PauseGame(){
         AudioManager.Instance.pauseMusic(AudioManager.Instance.bgmSounds[0].name, true);
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         _pausePanel.SetActive(true);
         Time.timeScale = 0;
         currentState = CurrentState.Pause;
@@ -44,6 +45,7 @@ public class PauseController : MonoBehaviour
     private void UnpauseGame(){
         AudioManager.Instance.pauseMusic(AudioManager.Instance.bgmSounds[0].name, false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         _pausePanel.SetActive(false);
         Time.timeScale = 1;
         currentState = CurrentState.Play;
