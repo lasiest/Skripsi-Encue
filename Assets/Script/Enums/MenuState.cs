@@ -4,5 +4,6 @@ public enum MenuState
     Level,
     Shop,
     Settings,
-    Credits
+    Credits,
+    Controls
 }

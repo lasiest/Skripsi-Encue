@@ -22,7 +22,7 @@ public class ShopMenu : MenuTemplate
 
     protected override void HandleItemValue(Transform populatedItemTransform, MenuItem item)
     {
-        item.type = item.id % 2 == 0 ? MenuItemType.Stat : MenuItemType.Consumable;
+        //item.type = item.id % 2 == 0 ? MenuItemType.Stat : MenuItemType.Consumable;
         DisplayPrice(populatedItemTransform, item);
         populatedItemTransform.GetComponent<Button>().onClick.AddListener(() => Purchase(populatedItemTransform, item));
     }
