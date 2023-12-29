@@ -1270,12 +1270,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1013831089}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 1500, y: 700}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 1500, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227765937
 MonoBehaviour:
@@ -1303,7 +1303,14 @@ MonoBehaviour:
     Use [Left SHIFT] to transform walk to run
 
 
-'
+    Use
+    [SPACE] to jump
+
+
+    Use [E] to grab and release
+
+
+    Use [ESC] to pause'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1543,7 +1550,6 @@ RectTransform:
   - {fileID: 1025040345}
   - {fileID: 1647431409}
   - {fileID: 1013831089}
-  - {fileID: 711553395}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3173,8 +3179,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 268366898}
-  m_RootOrder: 6
+  m_Father: {fileID: 1013831089}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4130,6 +4136,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 929831610}
+  - {fileID: 711553395}
   - {fileID: 227765936}
   m_Father: {fileID: 268366898}
   m_RootOrder: 5
@@ -5676,7 +5683,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 465503407}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.54166675
+  m_Size: 0.5416667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
