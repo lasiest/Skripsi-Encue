@@ -3,73 +3,69 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopMenu : MenuTemplate
+public class ShopMenu : ResponsiveMenuTemplate
 {
+    public override MenuState State => MenuState.Shop;
+
+    [SerializeField] private List<ShopItem> shopItemList = new();
+
+    [SerializeField] private Purchase purchase;
+
     [SerializeField] private TextMeshProUGUI playerMoney;
 
-    [SerializeField] private List<TextMeshProUGUI> statTMPs;
+    [SerializeField] private List<TextMeshProUGUI> statTMPList;
 
-    private int Balance => GameData.Instance.PlayerMoney;
+    protected override void Awake() => DisplayPlayerData();
 
-    private void DisplayBalance() => playerMoney.text = Balance.ToString();
-
-    protected override void Setup()
+    protected override void OnEnable()
     {
-        DisableItemBlueprint();
+        itemBlueprint.SetActive(true);
+        var totalItems = shopItemList.Count;
+        for (var index = 0; index < totalItems; index++)
+        {
+            var eachItem = shopItemList[index];
+            var newItemObject = Instantiate(original: itemBlueprint, parent: itemContent);
+            SetChildComponentsOf(eachItem, fromItemObject: newItemObject);
+            itemObjectList.Add(newItemObject);
+        }
+        itemBlueprint.SetActive(false);
+    }
+
+    protected override void SetChildComponentsOf(MenuItem menuItem, GameObject fromItemObject)
+    {
+        var eachItem = menuItem as ShopItem;
+        var fromItemObjectTransform = fromItemObject.transform;
+        GetChildComponent<Image>(fromItemObjectTransform, atIndex: 0).sprite = eachItem.sprite;
+        GetChildComponent<TextMeshProUGUI>(fromItemObjectTransform, atIndex: 1).text = eachItem.name.ToString();
+        SetPriceOf(eachItem, fromItemObjectTransform);
+        fromItemObject.GetComponent<Button>().onClick.AddListener(() => { purchase.Buy(eachItem, fromItemObjectTransform, atShopMenu: this, byMultiplier: Multiply(eachItem)); });
+    }
+
+    public void DisplayPlayerData()
+    {
         DisplayBalance();
         DisplayStatMultiplier();
     }
 
-    protected override void HandleItemValue(Transform populatedItemTransform, MenuItem item)
-    {
-        //item.type = item.id % 2 == 0 ? MenuItemType.Stat : MenuItemType.Consumable;
-        DisplayPrice(populatedItemTransform, item);
-        populatedItemTransform.GetComponent<Button>().onClick.AddListener(() => Purchase(populatedItemTransform, item));
-    }
-
-    private float GetMultiplierOfEach(MenuItem item) => PlayerPrefs.GetFloat(key: item.name, defaultValue: 1f);
-
-    private int GetPriceOfEach(MenuItem item) => (int)item.value + (int)item.value * (int)(10f * (GetMultiplierOfEach(item) - 1f));
-
-    private void DisplayPrice(Transform populatedItemTransform, MenuItem item) => GetChildComponent<TextMeshProUGUI>(populatedItemTransform, index: 2).text = GetPriceOfEach(item).ToString();
-
-    private void Purchase(Transform populatedItemTransform, MenuItem item)
-    {
-        if (CanBuy(item))
-        {
-            UpdateBalanceAfterBuy(item);
-            ApplyUpgradeFrom(item);
-            DisplayPrice(populatedItemTransform, item);
-            DisplayBalance();
-        }
-    }
-
-    private bool CanBuy(MenuItem item) => Balance >= GetPriceOfEach(item);
-
-    private void UpdateBalanceAfterBuy(MenuItem item) => PlayerPrefs.SetInt(key: PlayerPrefsKey.PLAYER_MONEY, value: Balance - GetPriceOfEach(item));
-
-    private void ApplyUpgradeFrom(MenuItem item)
-    {
-        switch(item.type)
-        {
-            case MenuItemType.Stat:
-                UpgradeMultiplierAfterBuy(item, byValue: 0.1f);
-                DisplayStatMultiplier();
-                break;
-            default: 
-                break;
-        }
-    }
-
-    private void UpgradeMultiplierAfterBuy(MenuItem item, float byValue) => PlayerPrefs.SetFloat(key: item.name, value: GetMultiplierOfEach(item) + byValue);
+    private void DisplayBalance() => playerMoney.text = GameData.Instance.PlayerMoney.ToString();
 
     private void DisplayStatMultiplier()
     {
-        var totalItems = TotalItems;
+        var totalItems = shopItemList.Count;
         for (var index = 0; index < totalItems; index++)
         {
-            var item = menuItems[index];
-            statTMPs[index].text = item.name + " Multiplier : " + GetMultiplierOfEach(item);
+            var eachItem = shopItemList[index];
+            statTMPList[index].text = eachItem.name + " Multiplier : " + Multiply(eachItem);
         }
+    }
+
+    private float Multiply(ShopItem eachItem) => PlayerPrefs.GetFloat(key: eachItem.name, defaultValue: 1f);
+
+    public void SetPriceOf(ShopItem eachItem, Transform fromItemObjectTransform) => GetChildComponent<TextMeshProUGUI>(fromItemObjectTransform, atIndex: 2).text = (eachItem.price * ((int)(10f * (Multiply(eachItem) - 1f)) + 1)).ToString();
+
+    protected override void OnDisable()
+    {
+        foreach (var shopItemObject in itemObjectList) Destroy(shopItemObject);
+        itemObjectList.Clear();
     }
 }

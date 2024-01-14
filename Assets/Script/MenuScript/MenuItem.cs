@@ -1,17 +1,19 @@
 using System;
 using UnityEngine;
 
-[Serializable] public class MenuItem
+public class MenuItem
 {
-    public int id;
-
     public Sprite sprite;
 
     public string name;
+}
 
-    public MenuItemType type;
+[Serializable] public class SettingsItem : MenuItem
+{
+    public float volume;
+}
 
-    public float value;
-
-    public bool interactable;
+[Serializable] public class ShopItem : MenuItem
+{
+    public int price;
 }

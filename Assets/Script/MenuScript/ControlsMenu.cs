@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class ControlsMenu : MenuTemplate
 {
-    protected override void Setup()
+    public override MenuState State => MenuState.Controls;
+
+    protected override void Awake()
     {
         //throw new System.NotImplementedException();
     }

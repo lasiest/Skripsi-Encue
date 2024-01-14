@@ -35,13 +35,11 @@ public class MenuStateMachine : Singleton<MenuStateMachine>
 
     public void Backtrack()
     {
-        if (visits.Count < 2) QuitApplication();
+        if (visits.Count < 2) Application.Quit();
         else
         {
             visits.Pop();
             GoTo(visits.Peek(), false);
         }
     }
-
-    private void QuitApplication() => Application.Quit();
 }

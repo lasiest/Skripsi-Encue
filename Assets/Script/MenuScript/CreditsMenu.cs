@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class CreditsMenu : MenuTemplate
 {
+    public override MenuState State => MenuState.Credits;
+
     // [SerializeField] private Button
-    protected override void Setup()
+
+    protected override void Awake()
     {
         //throw new System.NotImplementedException();
     }

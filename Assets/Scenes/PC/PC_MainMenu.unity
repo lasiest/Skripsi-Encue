@@ -372,10 +372,10 @@ RectTransform:
   m_Father: {fileID: 1135163408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -141.25}
+  m_SizeDelta: {x: 320, y: 282.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78456283
 MonoBehaviour:
@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 94410032}
   - component: {fileID: 94410031}
   - component: {fileID: 94410033}
+  - component: {fileID: 94410034}
   m_Layer: 5
   m_Name: PanelShopMenu
   m_TagString: Untagged
@@ -551,27 +552,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76813b7c00381c4c8dbe1875e5cbf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 2
   backButton: {fileID: 2106425742}
   itemContent: {fileID: 1135163408}
   itemBlueprint: {fileID: 78456281}
-  menuItems:
-  - id: 0
-    sprite: {fileID: 21300052, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  shopItemList:
+  - sprite: {fileID: 21300052, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: Speed
-    type: 2
-    value: 10000
-    interactable: 1
-  - id: 0
-    sprite: {fileID: 21300040, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+    price: 10000
+  - sprite: {fileID: 21300040, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: Strength
-    type: 2
-    value: 20000
-    interactable: 1
+    price: 20000
+  purchase: {fileID: 94410034}
   playerMoney: {fileID: 289120923}
-  statTMPs:
+  statTMPList:
   - {fileID: 1861002380}
   - {fileID: 1227061763}
+--- !u!114 &94410034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94410028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba6e5b239129034085074c041c0dff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &104075233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,11 +3149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778032261e32a7e4fa88ad8888923b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 1
   backButton: {fileID: 683318536}
-  itemContent: {fileID: 0}
-  itemBlueprint: {fileID: 0}
-  menuItems: []
   shopButton: {fileID: 1584214472}
   controlsButton: {fileID: 990485789}
 --- !u!1 &711553394
@@ -4158,11 +4161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261b3fa0239ee3742b9d83367e56d951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 5
   backButton: {fileID: 929831611}
-  itemContent: {fileID: 0}
-  itemBlueprint: {fileID: 0}
-  menuItems: []
 --- !u!114 &1013831091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4292,29 +4291,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec687c3f08c2ba48b1d69cb7efadaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 3
   backButton: {fileID: 1768167607}
   itemContent: {fileID: 976110799}
   itemBlueprint: {fileID: 1650012776}
-  menuItems:
-  - id: 0
-    sprite: {fileID: 21300072, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  settingItemList:
+  - sprite: {fileID: 21300072, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: Master
-    type: 0
-    value: 0
-    interactable: 1
-  - id: 0
-    sprite: {fileID: 21300086, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+    volume: 0
+  - sprite: {fileID: 21300086, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: SFX
-    type: 0
-    value: 0
-    interactable: 1
-  - id: 0
-    sprite: {fileID: 21300084, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+    volume: 0
+  - sprite: {fileID: 21300084, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     name: BGM
-    type: 0
-    value: 0
-    interactable: 1
+    volume: 0
   audioMixer: {fileID: 24100000, guid: 0a605bdd8ec54a445b5dbdca733fa150, type: 2}
   applyButton: {fileID: 1830124195}
 --- !u!1 &1079913822
@@ -5054,7 +5043,7 @@ GameObject:
   - component: {fileID: 1227061764}
   - component: {fileID: 1227061763}
   m_Layer: 5
-  m_Name: StrengthText
+  m_Name: TextStrength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6943,11 +6932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30624b3aa38fa934f86a00d8c8f68a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 4
   backButton: {fileID: 638402394}
-  itemContent: {fileID: 0}
-  itemBlueprint: {fileID: 0}
-  menuItems: []
 --- !u!114 &1647431411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8233,7 +8218,7 @@ GameObject:
   - component: {fileID: 1861002381}
   - component: {fileID: 1861002380}
   m_Layer: 5
-  m_Name: SpeedText
+  m_Name: TextSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8439,7 +8424,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 543910531}
   m_HandleRect: {fileID: 543910530}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9109,11 +9094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f679c9eb3fb1941a92151d0df69207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuState: 0
   backButton: {fileID: 407803794}
-  itemContent: {fileID: 0}
-  itemBlueprint: {fileID: 0}
-  menuItems: []
   playButton: {fileID: 1893231471}
   settingsButton: {fileID: 326310310}
   creditsButton: {fileID: 914899302}
