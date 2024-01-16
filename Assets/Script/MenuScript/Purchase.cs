@@ -20,5 +20,5 @@ public class Purchase : MonoBehaviour
 
     private void ReduceBalanceBy(int price) => PlayerPrefs.SetInt(key: PlayerPrefsKey.PLAYER_MONEY, value: Balance - price);
 
-    private void UpgradeStatFrom(ShopItem eachItem, float byMultiplier) => PlayerPrefs.SetFloat(key: eachItem.name, value: byMultiplier + 0.1f);
+    private void UpgradeStatFrom(ShopItem eachItem, float byMultiplier) => PlayerPrefs.SetFloat(key: eachItem.Name, value: byMultiplier + 0.1f);
 }

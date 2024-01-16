@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -8,33 +10,45 @@ public class SettingsMenu : ResponsiveMenuTemplate
 {
     public override MenuState State => MenuState.Settings;
 
-    [SerializeField] private List<SettingsItem> settingItemList = new();
+    [SerializeField] private List<SettingsItem> settingsItemList = new();
 
     [SerializeField] private AudioMixer audioMixer;
 
     [SerializeField] private Button applyButton;
 
-    protected override void Awake() => applyButton.onClick.AddListener(ApplySettings);
+    protected override async void Awake()
+    {
+        applyButton.onClick.AddListener(ApplySettings);
+        await Task.Delay(TimeSpan.FromSeconds(0.01f));
+        foreach (var eachItem in settingsItemList) SetVolumeOf(eachItem);
+    }
 
     private void ApplySettings()
     {
-        var totalItems = settingItemList.Count;
+        var totalItems = settingsItemList.Count;
         for (var index = 0; index < totalItems; index++)
         {
-            var eachItem = settingItemList[index];
+            var eachItem = settingsItemList[index];
             var settingsItemObject = itemObjectList[index];
             var slider = GetChildComponent<Slider>(settingsItemObject.transform, atIndex: 2);
-            PlayerPrefs.SetFloat(key: eachItem.name, value: slider.value);
+            PlayerPrefs.SetFloat(key: eachItem.Name, value: eachItem.volume = slider.value);
         }
+    }
+
+    private float SetVolumeOf(SettingsItem eachItem)
+    {
+        eachItem.volume = PlayerPrefs.GetFloat(eachItem.Name, defaultValue: 0f);
+        audioMixer.SetFloat(eachItem.Name, value: eachItem.volume);
+        return eachItem.volume;
     }
 
     protected override void OnEnable()
     {
         itemBlueprint.SetActive(true);
-        var totalItems = settingItemList.Count;
+        var totalItems = settingsItemList.Count;
         for (var index = 0; index < totalItems; index++)
         {
-            var eachItem = settingItemList[index];
+            var eachItem = settingsItemList[index];
             var newItemObject = Instantiate(original: itemBlueprint, parent: itemContent);
             SetChildComponentsOf(eachItem, fromItemObject: newItemObject);
             itemObjectList.Add(newItemObject);
@@ -42,12 +56,12 @@ public class SettingsMenu : ResponsiveMenuTemplate
         itemBlueprint.SetActive(false);
     }
 
-    protected override void SetChildComponentsOf(MenuItem menuItem, GameObject fromItemObject)
+    protected override void SetChildComponentsOf(IMenuItem menuItem, GameObject fromItemObject)
     {
         var eachItem = menuItem as SettingsItem;
         var fromItemObjectTransform = fromItemObject.transform;
-        GetChildComponent<Image>(fromItemObjectTransform, atIndex: 0).sprite = eachItem.sprite;
-        GetChildComponent<TextMeshProUGUI>(fromItemObjectTransform, atIndex: 1).text = eachItem.name.ToString();
+        GetChildComponent<Image>(fromItemObjectTransform, atIndex: 0).sprite = eachItem.Sprite;
+        GetChildComponent<TextMeshProUGUI>(fromItemObjectTransform, atIndex: 1).text = eachItem.Name.ToString();
         SetSliderOf(eachItem, fromItemObjectTransform);
     }
 
@@ -57,25 +71,18 @@ public class SettingsMenu : ResponsiveMenuTemplate
         slider.wholeNumbers = false;
         slider.minValue = -80f;
         slider.maxValue = 20f;
-        slider.onValueChanged.AddListener((value) => audioMixer.SetFloat(eachItem.name, value));
-        ResetValueOf(slider, eachItem);
-    }
-
-    private void ResetValueOf(Slider slider, SettingsItem eachItem)
-    {
-        slider.value = eachItem.volume = PlayerPrefs.GetFloat(key: eachItem.name, defaultValue: 0f);
-        audioMixer.SetFloat(eachItem.name, slider.value);
+        slider.value = SetVolumeOf(eachItem);
+        slider.onValueChanged.AddListener((value) => audioMixer.SetFloat(eachItem.Name, eachItem.volume = value));
     }
 
     protected override void OnDisable()
     {
-        var totalItems = settingItemList.Count;
+        var totalItems = settingsItemList.Count;
         for (var index = 0; index < totalItems; index++)
         {
-            var eachItem = settingItemList[index];
+            var eachItem = settingsItemList[index];
             var settingsItemObject = itemObjectList[index];
-            var slider = GetChildComponent<Slider>(settingsItemObject.transform, atIndex: 2);
-            ResetValueOf(slider, eachItem);
+            SetVolumeOf(eachItem);
             Destroy(settingsItemObject);
         }
         itemObjectList.Clear();

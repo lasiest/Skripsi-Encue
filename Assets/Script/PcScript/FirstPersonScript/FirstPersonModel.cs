@@ -20,7 +20,7 @@ public class FirstPersonModel : Singleton<FirstPersonModel>
 
     public float MoveSpeed { get; set; }
 
-    public float MoveStrength => 2f * PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_STRENGTH_MULTIPLIER);
+    public float MoveStrength => 2f * GameData.Instance.PlayerStrengthMultiplier;
 
     public float Gravity => -19.6f;
 

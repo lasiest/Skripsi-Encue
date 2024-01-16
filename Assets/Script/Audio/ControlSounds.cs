@@ -10,32 +10,25 @@ public class ControlSounds : MonoBehaviour
     private string BGM_MIXER = "BGM";
     private string SFX_MIXER = "SFX";
 
-    private void Start()
-    {
-        getBgmVolume();
-        getSfxVolume();
-    }
-
     private void Awake()
     {
         bgmSlider.onValueChanged.AddListener(setBgmVolume);
         bgmSlider.onValueChanged.AddListener(setSfxVolume);
     }
 
+    private void Start() => GetVolume();
+
+    private void GetVolume()
+    {
+        var gameData = GameData.Instance;
+        bgmSlider.value = gameData.AudioBGMVolume;
+        sfxSlider.value = gameData.AudioSFXVolume;
+    }
+
     private void OnDisable()
     {
         PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME, bgmSlider.value);
         PlayerPrefs.SetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME, sfxSlider.value);
-    }
-
-    private void getBgmVolume()
-    {
-        bgmSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME, 1f);
-    }
-
-    private void getSfxVolume()
-    {
-        sfxSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME, 1f);
     }
 
     public void setBgmVolume(float volume)

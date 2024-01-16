@@ -17,8 +17,9 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
-        setMusicVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_BGM_VOLUME, 0f));
-        setSfxVolume(PlayerPrefs.GetFloat(PlayerPrefsKey.PLAYER_SFX_VOLUME, 0f));
+        var gameData = GameData.Instance;
+        setMusicVolume(gameData.AudioBGMVolume);
+        setSfxVolume(gameData.AudioSFXVolume);
         playMusic(bgmSounds[0].name);
     }
 

@@ -11,7 +11,7 @@ public abstract class ResponsiveMenuTemplate : MenuTemplate
 
     protected T GetChildComponent<T>(Transform fromItemObjectTransform, int atIndex) => fromItemObjectTransform.GetChild(atIndex).GetComponent<T>();
 
-    protected abstract void SetChildComponentsOf(MenuItem eachItem, GameObject fromItemObject);
+    protected abstract void SetChildComponentsOf(IMenuItem eachItem, GameObject fromItemObject);
 
     protected abstract void OnEnable();
 
