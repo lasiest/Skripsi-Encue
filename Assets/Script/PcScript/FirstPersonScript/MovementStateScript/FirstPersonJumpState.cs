@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class FirstPersonJumpState : FirstPersonMovementStateTemplate
 {
-    public override void Execute()
+    public FirstPersonJumpState(FirstPersonModel player, FirstPersonStateMachine stateMachine) : base(player, stateMachine) { }
+
+    public override void Enter()
     {
-        var playerJumpHeight = 1f;
-        player.MoveSpeed = 1.5f * playerWalkSpeed;
-        var playerCurrent3DMovementDirectionY = player.Current3DMovementDirectionY;
-        player._3DMovementDirectionY = player.CharacterController.velocity.y < -1f && player.IsGrounded ? 0f : playerCurrent3DMovementDirectionY;
-        player._3DMovementDirectionY = player.IsBeingOrderedToJump ? Mathf.Sqrt(-2f * player.Gravity * playerJumpHeight) : playerCurrent3DMovementDirectionY;
+        player.MoveSpeed = 1.5f * player.WalkSpeed * player.SpeedMultiplier;
+        player._3DMovementDirectionY = Mathf.Sqrt(-2f * player.Gravity * player.JumpHeight);
     }
 
-    public override FirstPersonMovementStateTemplate Transition()
+    public override void Execute()
     {
-        Execute();
-        var movementStateFactory = player.MovementStateFactory;
-        return player.IsGrounded ? movementStateFactory.WalkState : movementStateFactory.JumpState;
+        if (player.IsGrounded) stateMachine.TransitionTo(stateMachine.WalkState);
+        else return;
     }
 }

@@ -1,6 +1,6 @@
-public interface IState<T>
+public interface IState
 {
-    public abstract void Execute();
+    public abstract void Enter();
 
-    public abstract T Transition();
+    public abstract void Execute();
 }

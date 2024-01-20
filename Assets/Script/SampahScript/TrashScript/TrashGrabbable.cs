@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class TrashGrabbable : Trash, IGrabbable
 {
+    [SerializeField] private float lerpMultiplier = 100f;
+
     private Transform crosshair;
 
-    [SerializeField] 
-    private float lerpMultiplier;
+    public float Weight => sampahInformation.beratSampah;
 
     public void BeingGrabbedOrReleased(bool isBeingGrabbed, Transform playerCrosshair)
     {

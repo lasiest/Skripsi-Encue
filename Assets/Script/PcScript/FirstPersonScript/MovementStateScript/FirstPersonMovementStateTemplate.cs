@@ -1,23 +1,16 @@
-using UnityEngine;
-
-public abstract class FirstPersonMovementStateTemplate : IState<FirstPersonMovementStateTemplate>
+public abstract class FirstPersonMovementStateTemplate : IState
 {
-    protected FirstPersonModel player = FirstPersonModel.Instance;
+    protected FirstPersonModel player;
 
-    protected float playerWalkSpeed = 2f * GameData.Instance.PlayerSpeedMultiplier;
+    protected FirstPersonStateMachine stateMachine;
+
+    protected FirstPersonMovementStateTemplate(FirstPersonModel player, FirstPersonStateMachine stateMachine)
+    {
+        this.player = player;
+        this.stateMachine = stateMachine;
+    }
+
+    public abstract void Enter();
 
     public abstract void Execute();
-
-    public virtual FirstPersonMovementStateTemplate Transition()
-    {
-        Execute();
-        var movementStateFactory = player.MovementStateFactory;
-        if (player.IsBeingOrderedToJump)
-        {
-            var jumpState = movementStateFactory.JumpState;
-            jumpState.Execute();
-            return jumpState;
-        }
-        else return player.IsBeingOrderedToRun ? movementStateFactory.RunState : movementStateFactory.WalkState;
-    }
 }

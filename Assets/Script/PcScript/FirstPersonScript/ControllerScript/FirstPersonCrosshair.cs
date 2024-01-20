@@ -1,22 +1,24 @@
 using UnityEngine;
 
-public class PlayerCrosshair : MonoBehaviour
+public class FirstPersonCrosshair : MonoBehaviour
 {
+    [SerializeField] private Transform crosshair;
+
+    [SerializeField] private FirstPersonInput input;
+
     [SerializeField] private Transform mainCamera;
 
-    [SerializeField] private float maxDistance;
+    [SerializeField] private float maxDistance = 2f;
 
     [SerializeField] private LayerMask layerMask;
 
     private IGrabbable anyGrabbable;
 
-    [SerializeField] private Transform crosshair;
-
     public GameObject Target { get; private set; }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (input.GetKeyDownE)
         {
             if (anyGrabbable == null)
             {

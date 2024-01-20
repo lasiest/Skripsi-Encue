@@ -2,53 +2,45 @@ using UnityEngine;
 
 public class FirstPersonModel : Singleton<FirstPersonModel>
 {
-    public FirstPersonMovementStateTemplate MovementState { get; set; }
+    [SerializeField] private CharacterController characterController;
 
-    public FirstPersonMovementStateFactory MovementStateFactory { get; set; } = new();
+    [SerializeField] private bool isAllowedToMove = true;
 
-    public bool IsAllowedToMove { get; set; } = true;
+    [SerializeField] private float moveSpeed;
 
-    public bool IsAllowedToRun { get; set; } = true;
+    [SerializeField] private float walkSpeed = 2f;
 
-    public bool IsAllowedToJump { get; set; } = true;
+    [SerializeField] private float jumpHeight = 1f;
 
-    public bool IsBeingOrderedToRun => IsAllowedToRun && Input.GetKey(KeyCode.LeftShift);
+    [SerializeField] private float gravity = -19.6f;
+
+    [SerializeField] private Vector3 _3DmovementDirection;
+
+    public CharacterController CharacterController => characterController;
 
     public bool IsGrounded => CharacterController.isGrounded;
 
-    public bool IsBeingOrderedToJump => IsAllowedToJump && IsGrounded && Input.GetKeyDown(KeyCode.Space);
+    public bool IsAllowedToMove { get => isAllowedToMove; set => isAllowedToMove = value; }
 
-    public float MoveSpeed { get; set; }
+    public bool IsBeingOrderedToRun { get; set; }
 
-    public float MoveStrength => 2f * GameData.Instance.PlayerStrengthMultiplier;
+    public bool IsBeingOrderedToJump { get; set; }
 
-    public float Gravity => -19.6f;
+    public bool HasGrabbed { get; set; }
 
-    public float MouseRotationSpeed => 1.75f;
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
 
-    public float MainCameraXRotationAngle { get; set; }
+    public float WalkSpeed => walkSpeed;
 
-    public float MainCameraXRotationAngleLimit => 90f;
+    public float JumpHeight => jumpHeight;
 
-    public Camera MainCamera { get; set; }
+    public float Gravity => gravity;
 
-    public CharacterController CharacterController { get; set; }
+    public float SpeedMultiplier => GameData.Instance.PlayerSpeedMultiplier;
 
-    public FirstPersonMovementSpeedController MoveSpeedController => GetComponent<FirstPersonMovementSpeedController>();
+    public float StrengthMultiplier => GameData.Instance.PlayerStrengthMultiplier;
 
-    private Vector3 _3DmovementDirection;
+    public Vector3 _3DMovementDirection { get => _3DmovementDirection; set => _3DmovementDirection = value; }
 
-    public Vector3 _3DMovementDirection
-    {
-        get => _3DmovementDirection;
-        set => _3DmovementDirection = value;
-    }
-
-    public float _3DMovementDirectionY
-    {
-        get => _3DmovementDirection.y;
-        set => _3DmovementDirection.y = value;
-    }
-
-    public float Current3DMovementDirectionY { get; set; }
+    public float _3DMovementDirectionY { get => _3DmovementDirection.y; set => _3DmovementDirection.y = value; }
 }
