@@ -6270,7 +6270,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 9.1835e-41, z: 1.8e-43, w: 8.436132e-10}
+  m_BoundingSphereOverride: {x: 4.5422438e+30, y: 2.0616471e-19, z: 5.0848856e+31,
+    w: -7.927832e-10}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -11332,13 +11333,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 340450318, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
       propertyPath: m_text
-      value: I should have done better to clean this town, this small town looks
-        almost dead
+      value: Ouch, it's too late! This town is now flooded and floods can cause transportation
+        delays, mosquito nest, and several other diseases.
       objectReference: {fileID: 0}
     - target: {fileID: 840608443, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 996f3ad0e68e85f448f4ecc8b0ddf625,
+      objectReference: {fileID: 21300000, guid: de7325dc1114cbe4d93f1df357eb11f7,
         type: 3}
     - target: {fileID: 1304269110, guid: b54e8a6a8fd731243bdd712e9d9c7b43, type: 3}
       propertyPath: m_Sprite
